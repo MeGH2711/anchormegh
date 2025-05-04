@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anchoring Event</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #0d0d0d;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        #landing-video-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -2;
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120vw;
+            height: 120vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0.05;
+            z-index: -2;
+            border: none;
+        }
+
+        .navbar {
+            background-color: transparent !important;
+            padding: 1rem 2rem;
+            position: absolute;
+            width: 100%;
+            z-index: 20;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        .navbar-brand img {
+            width: 80px;
+            height: auto;
+        }
+
+        .navbar-nav .nav-link {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #fff !important;
+            padding: 0 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #f0a500 !important;
+        }
+
+        #intro-container {
+            max-width: 90%;
+            height: auto;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #intro-words {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 0;
+        }
+
+        .intro-word {
+            font-size: 5rem;
+            font-weight: bold;
+            margin: 0 1rem;
+            color: #fff;
+            opacity: 0;
+        }
+
+        #main-content {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        header h1 span {
+            opacity: 0;
+            transform: translateY(50px);
+            display: inline-block;
+        }
+
+        .lead {
+            z-index: 2;
+        }
+
+        #title {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .book-now-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            background-color: #d7d7d7;
+        }
+
+        .marquee-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            background: transparent;
+            padding: 20px 0;
+        }
+
+        .marquee-content {
+            display: flex;
+            width: fit-content;
+            animation: marquee 40s linear infinite;
+            animation-play-state: running;
+        }
+
+        .marquee-wrapper:hover .marquee-content {
+            animation-play-state: paused;
+        }
+
+        .marquee-content img {
+            height: 250px;
+            margin: 0 20px;
+            object-fit: contain;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .marquee-content img:hover {
+            transform: scale(1.025);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25), 0 0 40px rgba(255, 255, 255, 0.15);
+            z-index: 1;
+        }
+
+        .about-me {
+            background: rgba(255, 255, 255, 0.03);
+            color: #fff;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .about-me h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+
+        .about-me p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stats-section {
+            background-color: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .stat-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            backdrop-filter: blur(8px);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        .instagram-content {
+            color: #fff;
+            text-align: center;
+        }
+
+        .instagram-content h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .instagram-embed {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .instagram-embed iframe {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 24px;
+            font-size: 1rem;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-instagram:hover {
+            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .worked-with-section {
+            background-color: rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .worked-with-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .brand-logo {
+            max-height: 80px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+            cursor: pointer;
+        }
+
+        .brand-logo:hover {
+            transform: perspective(600px) rotateY(20deg) rotateX(2deg) scale(1.5);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .services-section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .service-card {
+            padding: 30px 40px;
+            font-size: 1.2rem;
+            color: #fff;
+            width: 350px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #testimonials {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        #testimonials h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 2rem;
+        }
+
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 90vw;
+            margin: 0 auto;
+        }
+
+        .chat-bubble {
+            max-width: 60%;
+            padding: 1rem 1.25rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            -webkit-backdrop-filter: blur(10px);
+            color: #ffffff;
+        }
+
+        .chat-bubble.left {
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
+        }
+
+        .chat-bubble.right {
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+
+        .client-name {
+            display: block;
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: #bebebe;
+            font-size: 0.9rem;
+        }
+
+        .booking-form {
+            max-width: 90vw;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .booking-form .form-row {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .booking-form input,
+        .booking-form textarea {
+            padding: 0.75rem;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: transparent;
+            color: #ffffff;
+            outline: none;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .booking-form input::placeholder,
+        .booking-form textarea::placeholder {
+            color: #aaa;
+        }
+
+        .booking-form input:focus,
+        .booking-form textarea:focus {
+            border-color: #007BFF;
+        }
+
+        .booking-form button {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            align-self: flex-start;
+        }
+
+        .booking-form button:hover {
+            background-color: #d7d7d7;
+        }
+
+        .contact-section {
+            background-color: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+        }
+
+        .contact-heading {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 90vw;
+            margin: auto;
+        }
+
+        .contact-card {
+            padding: 1.5rem;
+        }
+
+        .contact-card a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .contact-card a:hover {
+            color: #cccccc;
+            text-decoration: none;
+        }
+
+        .frosted-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .frosted-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.15);
+            transform: translateY(-8px);
+            backdrop-filter: blur(8px);
+        }
+
+        @media screen and (max-width: 600px) {
+            #intro-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .intro-word {
+                font-size: 1rem;
+                font-weight: bold;
+                margin: 0 0.5rem;
+                color: #fff;
+                opacity: 0;
+            }
+
+            #intro-left,
+            #intro-right {
+                width: 100%;
+                padding: 10px 0;
+            }
+
+            #intro-left img {
+                width: 80%;
+                height: auto;
+            }
+
+            .instagram-embed iframe {
+                scale: 0.85;
+            }
+
+            .instagram-embed {
+                padding: 2px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-card {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+
+        ::selection {
+            background-color: white;
+            color: black;
+        }
+
+        ::webkit-selection {
+            background-color: white;
+            color: black;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .marquee-content img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="intro-container">
+        <div id="intro-words" class="d-flex justify-content-center align-items-center">
+            <h2 class="intro-word">Dynamic</h2>
+            <h2 class="intro-word">.</h2>
+            <h2 class="intro-word">Energetic</h2>
+            <h2 class="intro-word">.</h2>
+            <h2 class="intro-word">Charismatic</h2>
+        </div>
+    </div>
+
+    <div id="mainPageContent" class="d-none">
+
+        <div id="landing-video-section">
+            <iframe id="bg-video"
+                src="https://www.youtube.com/embed/rTbdOhFFK4k?autoplay=1&mute=1&loop=1&controls=0&playlist=rTbdOhFFK4k&modestbranding=1&showinfo=0&rel=0"
+                frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
+            </iframe>
+        </div>
+
+
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand py-2" href="/">
+                    <img src="images/MP.png" class="img-fluid" alt="Logo">
+                </a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#sectionAboutMe">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#sectionInstagram">Instagram</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#sectionWorks">Works</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#sectionServices">Services Offered</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="main-content">
+            <header>
+                <div>
+                    <p class="lead">Welcome to the world of</p>
+                    <h1 id="title">
+                        <span class="me-3">OG</span>
+                        <span class="me-3">Anchor</span>
+                        <span class="me-3">Megh</span>
+                    </h1>
+                    <a href="#contact" class="book-now-btn">Book Now</a>
+                </div>
+            </header>
+        </div>
+
+        <!-- Marquee Section -->
+        <div class="container-fluid">
+            <div class="marquee-wrapper py-5">
+                <div class="marquee-content">
+                    <img src="images/DSC02202.JPG" class="rounded-3" alt="Event 1" />
+                    <img src="images/DSC05766.JPG" class="rounded-3" alt="Event 2" />
+                    <img src="images/DSC05841.JPG" class="rounded-3" alt="Event 3" />
+                    <img src="images/DSC_6179.JPG" class="rounded-3" alt="Event 4" />
+                    <img src="images/DSC_6542.JPG" class="rounded-3" alt="Event 5" />
+                    <img src="images/DSC_6820.JPG" class="rounded-3" alt="Event 6" />
+                    <img src="images/EM6A0828.JPG" class="rounded-3" alt="Event 7" />
+                    <!-- Duplicates for loop effect -->
+                    <img src="images/DSC02202.JPG" class="rounded-3" alt="Event 1" />
+                    <img src="images/DSC05766.JPG" class="rounded-3" alt="Event 2" />
+                    <img src="images/DSC05841.JPG" class="rounded-3" alt="Event 3" />
+                    <img src="images/DSC_6179.JPG" class="rounded-3" alt="Event 4" />
+                    <img src="images/DSC_6542.JPG" class="rounded-3" alt="Event 5" />
+                    <img src="images/DSC_6820.JPG" class="rounded-3" alt="Event 6" />
+                    <img src="images/EM6A0828.JPG" class="rounded-3" alt="Event 7" />
+                </div>
+            </div>
+        </div>
+
+        <!-- About Me Section -->
+        <section class="about-me py-5" id="sectionAboutMe">
+            <div class="container text-center">
+                <h2 class="mb-4">About Me</h2>
+                <p class="lead mb-4">
+                    I’m <strong>Anchor Megh</strong> – a dynamic, high-energy host who lives to engage, entertain, and
+                    elevate every event. With years of experience across stages big and small, I bring charisma,
+                    spontaneity, and a deep connection with every audience.
+                </p>
+                <p>
+                    From cultural fests and weddings to corporate shows and award ceremonies, I’ve had the honor of
+                    being
+                    the voice behind countless unforgettable moments. Let's make your next event one to remember!
+                </p>
+            </div>
+        </section>
+
+        <!-- Stats Cards Section -->
+        <section class="stats-section py-5">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-4 my-2">
+                        <div class="stat-card p-4 rounded-4 shadow">
+                            <h3 class="display-5 fw-bold">25+</h3>
+                            <p class="mb-0">Events Hosted</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="stat-card p-4 rounded-4 shadow">
+                            <h3 class="display-5 fw-bold">4+</h3>
+                            <p class="mb-0">Years of Experience</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 my-2">
+                        <div class="stat-card p-4 rounded-4 shadow">
+                            <h3 class="display-5 fw-bold">10,000+</h3>
+                            <p class="mb-0">People Engaged</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Instagram Content Section -->
+        <section class="instagram-content py-5" id="sectionInstagram">
+            <div class="container text-center">
+                <h2 class="mb-4">Latest Instagram Posts</h2>
+                <div class="follow-instagram-btn mb-4">
+                    <a href="https://www.instagram.com/anchormegh" target="_blank" class="btn btn-instagram">
+                        <i class="fab fa-instagram"></i> Follow on Instagram
+                    </a>
+                </div>
+                <div class="row">
+                    <!-- Instagram Post 1 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="instagram-embed">
+                            <blockquote class="instagram-media"
+                                data-instgrm-permalink="https://www.instagram.com/reel/DIqkp32iY7I/?utm_source=ig_embed&amp;utm_campaign=loading"
+                                data-instgrm-version="14"
+                                style="background:#FFF; border:0; margin: 1em auto; max-width:540px; min-width:326px; padding:0; width:99%;">
+                            </blockquote>
+                        </div>
+                    </div>
+                    <!-- Instagram Post 2 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="instagram-embed">
+                            <blockquote class="instagram-media"
+                                data-instgrm-permalink="https://www.instagram.com/reel/DGIkRGpo5-j/?utm_source=ig_embed&amp;utm_campaign=loading"
+                                data-instgrm-version="14">
+                            </blockquote>
+                        </div>
+                    </div>
+                    <!-- Instagram Post 3 -->
+                    <div class="col-md-4 mb-4">
+                        <div class="instagram-embed">
+                            <blockquote class="instagram-media"
+                                data-instgrm-permalink="https://www.instagram.com/reel/DD_Qpb0osIf/?utm_source=ig_embed&amp;utm_campaign=loading"
+                                data-instgrm-version="14">
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Worked With Section -->
+        <section class="worked-with-section py-5" id="sectionWorks">
+            <div class="container text-center">
+                <h2 class="mb-5">Worked With</h2>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-6 col-sm-4 col-md-3 mb-4">
+                        <img src="images/gulogo.png" alt="Brand 1" class="brand-logo img-fluid workedWithBrandLogo">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services offered -->
+        <section class="services-section" id="sectionServices">
+            <h2 class="section-title mb-5">Services I Offer</h2>
+            <div class="services-container">
+                <div class="service-card frosted-card">Event Hosting</div>
+                <div class="service-card frosted-card">Corporate Emceeing</div>
+                <div class="service-card frosted-card">Wedding Anchoring</div>
+                <div class="service-card frosted-card">College Fests & Cultural Nights</div>
+                <div class="service-card frosted-card">Award Ceremonies</div>
+                <div class="service-card frosted-card">Interviews & Talk Shows</div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials">
+            <h2 class="section-title mb-5 text-light">Customer Testimonials</h2>
+
+            <div class="chat-container">
+                <div class="chat-bubble left frosted-card">
+                    <p>"You have made our event memorable, to think Sangeet without you was not possible. Your Voice and
+                        modulation of voice is ❤️✨"</p>
+                    <span class="client-name">– Parshva Shah</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="pb-5">
+            <h2 class="section-title my-5 text-center text-light">Book an Event / Contact Form</h2>
+            <form class="booking-form" id="bookingForm">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-row">
+                    <input type="tel" name="phone" placeholder="Your Phone" required>
+                    <input type="text" name="event" placeholder="Event Type" required>
+                </div>
+                <div class="form-row">
+                    <input type="date" name="date" required>
+                    <input type="text" name="instagram" placeholder="Instagram Profile (optional)">
+                </div>
+                <div class="form-row">
+                    <input type="text" name="facebook" placeholder="Facebook Profile (optional)">
+                    <input type="text" name="twitter" placeholder="Twitter Profile (optional)">
+                </div>
+                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+                <button class="w-100" type="submit">Submit</button>
+            </form>
+        </section>
+
+        <section id="contact-cards" class="contact-section">
+            <h2 class="contact-heading py-4 text-center">Connect With Me</h2>
+            <div class="cards-container py-4">
+                <!-- Email Card -->
+                <div class="contact-card frosted-card">
+                    <h3><i class="fas fa-envelope me-1"></i> Email</h3>
+                    <a href="mailto:anchormegh@gmail.com">anchormegh@gmail.com</a>
+                </div>
+
+                <!-- Phone Card -->
+                <div class="contact-card frosted-card">
+                    <h3><i class="fas fa-phone me-1"></i> Phone</h3>
+                    <a href="tel:+919510983397">+91 9510983397</a>
+                </div>
+
+                <!-- WhatsApp Card -->
+                <div class="contact-card frosted-card">
+                    <h3><i class="fab fa-whatsapp me-1"></i> WhatsApp</h3>
+                    <a href="https://wa.me/+919510983397" target="_blank">https://wa.me/+919510983397</a>
+                </div>
+
+                <!-- Instagram Card -->
+                <div class="contact-card frosted-card">
+                    <h3><i class="fab fa-instagram me-1"></i> Instagram</h3>
+                    <a href="https://www.instagram.com/anchormegh" target="_blank">instagram.com/anchormegh</a>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Loader Overlay with Blur Background and Centered Spinner -->
+    <div id="loader-overlay"
+        class="position-fixed top-0 start-0 w-100 h-100 d-none d-flex align-items-center justify-content-center"
+        style="z-index: 1055; backdrop-filter: blur(6px); background-color: rgba(0, 0, 0, 0.3);">
+
+        <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem; border-width: 6px;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Toast Container (you can place this anywhere in your HTML) -->
+    <div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1060;"></div>
+
+    <!-- Instagram Embed Script -->
+    <script async src="//www.instagram.com/embed.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <script>
+        (function () {
+            emailjs.init("-b0xEeOf22nPapT64");
+        })();
+
+        document.getElementById("bookingForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            // Show loader
+            document.getElementById("loader-overlay").classList.remove("d-none");
+
+            emailjs.sendForm("service_6fgpet9", "template_lxajzcn", this)
+                .then(function (response) {
+                    showToast('success', 'Message sent successfully!');
+                }, function (error) {
+                    showToast('error', 'Failed to send message: ' + JSON.stringify(error));
+                })
+                .finally(() => {
+                    // Hide loader
+                    document.getElementById("loader-overlay").classList.add("d-none");
+                });
+
+            this.reset();
+        });
+
+        function showToast(type, message) {
+            const toastContainer = document.getElementById('toast-container');
+
+            const toast = document.createElement('div');
+            toast.classList.add('toast', 'align-items-center', 'text-white', 'border-0', 'mb-2', 'position-relative');
+            toast.style.minWidth = '250px';
+
+            toast.classList.add(type === 'success' ? 'bg-success' : 'bg-danger');
+
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            `;
+
+            toastContainer.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+
+            setTimeout(() => {
+                toast.remove();
+            }, 5000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            gsap.to(".intro-word", {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.8,
+                ease: "power3.out",
+                onComplete: () => {
+                    gsap.to(".intro-word", {
+                        opacity: 0,
+                        scale: 1.5,
+                        duration: 1,
+                        delay: 1,
+                        ease: "power2.inOut",
+                        onComplete: () => {
+                            gsap.to("#intro-words", {
+                                opacity: 0,
+                                duration: 1,
+                                onComplete: () => {
+
+                                    // Hide intro, show main content using class manipulation
+                                    document.getElementById('intro-container').classList.add('d-none');
+                                    const mainContent = document.getElementById('mainPageContent');
+                                    mainContent.classList.remove('d-none');
+                                    mainContent.classList.add('d-block');
+
+                                    // Continue with GSAP animations
+                                    gsap.to(".navbar", {
+                                        visibility: "visible",
+                                        opacity: 1,
+                                        duration: 1
+                                    });
+
+                                    gsap.to("#main-content", {
+                                        visibility: "visible",
+                                        opacity: 1,
+                                        duration: 1
+                                    });
+
+                                    gsap.to("#title span", {
+                                        opacity: 1,
+                                        y: 0,
+                                        duration: 1,
+                                        stagger: 0.2,
+                                        ease: "power4.out"
+                                    });
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>
