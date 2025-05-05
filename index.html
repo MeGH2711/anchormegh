@@ -8,44 +8,38 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <style>
         body {
             background: #0d0d0d;
-            color: #fff;
+            color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow-x: hidden;
-            margin: 0;
         }
 
-        #landing-video-section {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            z-index: -2;
+        #intro-container {
+            max-width: 90%;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
-        #bg-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.05;
-            z-index: -2;
+        #intro-words {
+            background-color: #000000;
+            z-index: 0;
+        }
+
+        .intro-word {
+            font-size: 5vw;
+            margin: 0 1rem;
+            color: #ffffff;
+            opacity: 0;
         }
 
         .navbar {
-            background-color: transparent !important;
             padding: 1rem 2rem;
-            position: absolute;
-            width: 100%;
             z-index: 20;
             visibility: hidden;
             opacity: 0;
@@ -53,13 +47,21 @@
 
         .navbar-brand img {
             width: 80px;
-            height: auto;
+        }
+
+        #landing-video-section {
+            z-index: -2;
+        }
+
+        #bg-video {
+            opacity: 0.05;
+            z-index: -2;
         }
 
         .navbar-nav .nav-link {
             font-family: 'Poppins', sans-serif;
             font-weight: 600;
-            color: #fff !important;
+            color: #ffffff !important;
             padding: 0 1rem;
             transition: all 0.3s ease;
         }
@@ -68,62 +70,19 @@
             color: #f0a500 !important;
         }
 
-        #intro-container {
-            max-width: 90%;
-            height: auto;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        #intro-words {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 0;
-        }
-
-        .intro-word {
-            font-size: 5rem;
-            font-weight: bold;
-            margin: 0 1rem;
-            color: #fff;
-            opacity: 0;
-        }
-
         #main-content {
             visibility: hidden;
             opacity: 0;
         }
 
-        header {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
         header h1 {
             font-size: 4rem;
-            font-weight: bold;
             z-index: 2;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
         }
 
         header h1 span {
             opacity: 0;
             transform: translateY(50px);
-            display: inline-block;
         }
 
         .lead {
@@ -132,23 +91,6 @@
 
         #title {
             font-family: 'Montserrat', sans-serif;
-        }
-
-        .book-now-btn {
-            display: inline-block;
-            margin-top: 1.5rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            text-decoration: none;
-            font-size: 1rem;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: background 0.3s ease;
-        }
-
-        .book-now-btn:hover {
-            background-color: #d7d7d7;
         }
 
         .marquee-wrapper {
@@ -185,7 +127,6 @@
 
         .about-me {
             background: rgba(255, 255, 255, 0.03);
-            color: #fff;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -200,18 +141,15 @@
             font-size: 1.1rem;
             line-height: 1.8;
             max-width: 800px;
-            margin: 0 auto;
         }
 
         .stats-section {
             background-color: rgba(255, 255, 255, 0.02);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
         }
 
         .stat-card {
-            position: relative;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
@@ -232,25 +170,16 @@
             box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
         }
 
-        .instagram-content {
-            color: #fff;
-            text-align: center;
-        }
-
         .instagram-content h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 600;
-            color: #ffffff;
         }
 
         .instagram-embed {
             background-color: rgba(255, 255, 255, 0.1);
             padding: 10px;
             border-radius: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
         }
 
         .instagram-embed iframe {
@@ -261,17 +190,12 @@
 
         .btn-instagram {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
             font-weight: 600;
-            border: none;
             border-radius: 50px;
             padding: 12px 24px;
             font-size: 1rem;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease-in-out;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
             gap: 10px;
         }
 
@@ -286,14 +210,12 @@
             background-color: rgba(255, 255, 255, 0.03);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
         }
 
         .worked-with-section h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 600;
-            color: #ffffff;
         }
 
         .brand-logo {
@@ -311,55 +233,38 @@
 
         .services-section {
             padding: 80px 20px;
-            text-align: center;
         }
 
         .section-title {
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 600;
-            color: #ffffff;
         }
 
         .services-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
             gap: 20px;
         }
 
         .service-card {
             padding: 30px 40px;
             font-size: 1.2rem;
-            color: #fff;
             width: 350px;
             height: 150px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
         }
 
         #testimonials {
             background-color: rgba(255, 255, 255, 0.03);
             padding: 2rem 1rem;
-            text-align: center;
         }
 
         #testimonials h2 {
             font-size: 2rem;
-            color: #333;
             margin-bottom: 2rem;
         }
 
         .chat-container {
-            display: flex;
-            flex-direction: column;
             gap: 1.5rem;
             max-width: 90vw;
-            margin: 0 auto;
         }
 
         .chat-bubble {
@@ -368,46 +273,35 @@
             font-size: 1rem;
             line-height: 1.5;
             -webkit-backdrop-filter: blur(10px);
-            color: #ffffff;
         }
 
         .chat-bubble.left {
-            align-self: flex-start;
             border-bottom-left-radius: 0;
         }
 
         .chat-bubble.right {
-            align-self: flex-end;
             border-bottom-right-radius: 0;
         }
 
         .client-name {
-            display: block;
             margin-top: 0.5rem;
-            font-weight: bold;
             color: #bebebe;
             font-size: 0.9rem;
         }
 
         .booking-form {
             max-width: 90vw;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
             gap: 1rem;
         }
 
         .booking-form .form-row {
-            display: flex;
-            flex-direction: row;
             gap: 1rem;
-            flex-wrap: wrap;
         }
 
         .booking-form input,
         .booking-form textarea {
             padding: 0.75rem;
-            border: 2px solid #ccc;
+            border: 2px solid #cccccc;
             border-radius: 10px;
             font-size: 1rem;
             background: transparent;
@@ -419,7 +313,7 @@
 
         .booking-form input::placeholder,
         .booking-form textarea::placeholder {
-            color: #aaa;
+            color: #aaaaaa;
         }
 
         .booking-form input:focus,
@@ -452,7 +346,6 @@
             font-family: 'Poppins', sans-serif;
             font-size: 2.5rem;
             font-weight: 600;
-            color: #ffffff;
         }
 
         .cards-container {
@@ -492,6 +385,16 @@
             box-shadow: 0 12px 35px rgba(255, 255, 255, 0.15);
             transform: translateY(-8px);
             backdrop-filter: blur(8px);
+        }
+
+        ::selection {
+            background-color: white;
+            color: black;
+        }
+
+        ::webkit-selection {
+            background-color: white;
+            color: black;
         }
 
         @media screen and (max-width: 600px) {
@@ -535,16 +438,6 @@
             }
         }
 
-        ::selection {
-            background-color: white;
-            color: black;
-        }
-
-        ::webkit-selection {
-            background-color: white;
-            color: black;
-        }
-
         @keyframes marquee {
             from {
                 transform: translateX(0);
@@ -560,29 +453,52 @@
                 height: 150px;
             }
         }
+
+        @media (min-width: 768px) and (max-width: 992px) {
+            .instagram-embed iframe {
+                scale: 0.60;
+            }
+
+            .instagram-embed {
+                padding: 2px;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .instagram-embed iframe {
+                scale: 0.85;
+            }
+
+            .instagram-embed {
+                padding: 2px;
+            }
+        }
     </style>
 </head>
 
-<body>
-    <div id="intro-container">
-        <div id="intro-words" class="d-flex justify-content-center align-items-center">
-            <h2 class="intro-word">Dynamic</h2>
-            <h2 class="intro-word">.</h2>
-            <h2 class="intro-word">Energetic</h2>
-            <h2 class="intro-word">.</h2>
-            <h2 class="intro-word">Charismatic</h2>
+<body class="m-0 overflow-x-hidden">
+
+    <div id="intro-container" class="h-auto my-0 mx-auto">
+        <div id="intro-words"
+            class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 vh-100">
+            <h2 class="intro-word fw-bold">Dynamic</h2>
+            <h2 class="intro-word fw-bold">.</h2>
+            <h2 class="intro-word fw-bold">Energetic</h2>
+            <h2 class="intro-word fw-bold">.</h2>
+            <h2 class="intro-word fw-bold">Charismatic</h2>
         </div>
     </div>
 
     <div id="mainPageContent" class="d-none">
 
-        <div id="landing-video-section">
-            <img id="bg-video" src="WebsiteVideo.gif" alt="Landing Background" />
+        <div id="landing-video-section" class="position-fixed top-0 start-0 vh-100 vw-100 overflow-hidden">
+            <img id="bg-video" src="WebsiteVideo.gif" alt="Landing Background"
+                class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" />
         </div>
 
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg bg-tranparent position-absolute w-100">
             <div class="container-fluid">
-                <a class="navbar-brand py-2" href="/">
+                <a class="navbar-brand py-2 h-auto" href="/">
                     <img src="images/MP.png" class="img-fluid" alt="Logo">
                 </a>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -600,15 +516,15 @@
         </nav>
 
         <div id="main-content">
-            <header>
+            <header class="vh-100 d-flex justify-content-center align-items-center text-center position-relative">
                 <div>
                     <p class="lead">Welcome to the world of</p>
-                    <h1 id="title">
-                        <span class="me-3">OG</span>
-                        <span class="me-3">Anchor</span>
-                        <span class="me-3">Megh</span>
+                    <h1 class="fw-bold d-flex flex-wrap justify-content-center" id="title">
+                        <span class="me-3 d-inline-block">OG</span>
+                        <span class="me-3 d-inline-block">Anchor</span>
+                        <span class="me-3 d-inline-block">Megh</span>
                     </h1>
-                    <a href="#contact" class="book-now-btn">Book Now</a>
+                    <a href="#contact" class="btn btn-light my-3 rounded-pill fw-bold">Book Now</a>
                 </div>
             </header>
         </div>
@@ -617,35 +533,35 @@
         <div class="container-fluid">
             <div class="marquee-wrapper py-5">
                 <div class="marquee-content">
-                    <img src="images/DSC02202.JPG" class="rounded-3" alt="Event 1" />
-                    <img src="images/DSC05766.JPG" class="rounded-3" alt="Event 2" />
-                    <img src="images/DSC05841.JPG" class="rounded-3" alt="Event 3" />
-                    <img src="images/DSC_6179.JPG" class="rounded-3" alt="Event 4" />
-                    <img src="images/DSC_6542.JPG" class="rounded-3" alt="Event 5" />
-                    <img src="images/DSC_6820.JPG" class="rounded-3" alt="Event 6" />
-                    <img src="images/EM6A0828.JPG" class="rounded-3" alt="Event 7" />
+                    <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
+                    <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
+                    <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
+                    <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
+                    <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
+                    <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
+                    <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
                     <!-- Duplicates for loop effect -->
-                    <img src="images/DSC02202.JPG" class="rounded-3" alt="Event 1" />
-                    <img src="images/DSC05766.JPG" class="rounded-3" alt="Event 2" />
-                    <img src="images/DSC05841.JPG" class="rounded-3" alt="Event 3" />
-                    <img src="images/DSC_6179.JPG" class="rounded-3" alt="Event 4" />
-                    <img src="images/DSC_6542.JPG" class="rounded-3" alt="Event 5" />
-                    <img src="images/DSC_6820.JPG" class="rounded-3" alt="Event 6" />
-                    <img src="images/EM6A0828.JPG" class="rounded-3" alt="Event 7" />
+                    <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
+                    <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
+                    <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
+                    <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
+                    <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
+                    <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
+                    <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
                 </div>
             </div>
         </div>
 
         <!-- About Me Section -->
-        <section class="about-me py-5" id="sectionAboutMe">
+        <section class="about-me py-5 text-light" id="sectionAboutMe">
             <div class="container text-center">
                 <h2 class="mb-4">About Me</h2>
-                <p class="lead mb-4">
+                <p class="lead mt-0 mb-4 mx-auto">
                     I’m <strong>Anchor Megh</strong> – a dynamic, high-energy host who lives to engage, entertain, and
                     elevate every event. With years of experience across stages big and small, I bring charisma,
                     spontaneity, and a deep connection with every audience.
                 </p>
-                <p>
+                <p class="mx-auto my-0">
                     From cultural fests and weddings to corporate shows and award ceremonies, I’ve had the honor of
                     being
                     the voice behind countless unforgettable moments. Let's make your next event one to remember!
@@ -654,23 +570,23 @@
         </section>
 
         <!-- Stats Cards Section -->
-        <section class="stats-section py-5">
+        <section class="stats-section text-light py-5">
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-4 my-2">
-                        <div class="stat-card p-4 rounded-4 shadow">
+                        <div class="stat-card position-relative p-4 rounded-4 shadow">
                             <h3 class="display-5 fw-bold">25+</h3>
                             <p class="mb-0">Events Hosted</p>
                         </div>
                     </div>
                     <div class="col-md-4 my-2">
-                        <div class="stat-card p-4 rounded-4 shadow">
+                        <div class="stat-card position-relative p-4 rounded-4 shadow">
                             <h3 class="display-5 fw-bold">4+</h3>
                             <p class="mb-0">Years of Experience</p>
                         </div>
                     </div>
                     <div class="col-md-4 my-2">
-                        <div class="stat-card p-4 rounded-4 shadow">
+                        <div class="stat-card position-relative p-4 rounded-4 shadow">
                             <h3 class="display-5 fw-bold">10,000+</h3>
                             <p class="mb-0">People Engaged</p>
                         </div>
@@ -680,18 +596,19 @@
         </section>
 
         <!-- Latest Instagram Content Section -->
-        <section class="instagram-content py-5" id="sectionInstagram">
+        <section class="instagram-content py-5 text-light text-center" id="sectionInstagram">
             <div class="container text-center">
-                <h2 class="mb-4">Latest Instagram Posts</h2>
+                <h2 class="mb-4 text-light">Latest Instagram Posts</h2>
                 <div class="follow-instagram-btn mb-4">
-                    <a href="https://www.instagram.com/anchormegh" target="_blank" class="btn btn-instagram">
+                    <a href="https://www.instagram.com/anchormegh" target="_blank"
+                        class="btn btn-instagram text-light border-0 text-decoration-none d-inline-flex align-items-center">
                         <i class="fab fa-instagram"></i> Follow on Instagram
                     </a>
                 </div>
                 <div class="row">
                     <!-- Instagram Post 1 -->
                     <div class="col-md-4 mb-4">
-                        <div class="instagram-embed">
+                        <div class="instagram-embed d-flex justify-content-center align-items-center">
                             <blockquote class="instagram-media"
                                 data-instgrm-permalink="https://www.instagram.com/reel/DIqkp32iY7I/?utm_source=ig_embed&amp;utm_campaign=loading"
                                 data-instgrm-version="14"
@@ -701,7 +618,7 @@
                     </div>
                     <!-- Instagram Post 2 -->
                     <div class="col-md-4 mb-4">
-                        <div class="instagram-embed">
+                        <div class="instagram-embed d-flex justify-content-center align-items-center">
                             <blockquote class="instagram-media"
                                 data-instgrm-permalink="https://www.instagram.com/reel/DGIkRGpo5-j/?utm_source=ig_embed&amp;utm_campaign=loading"
                                 data-instgrm-version="14">
@@ -710,7 +627,7 @@
                     </div>
                     <!-- Instagram Post 3 -->
                     <div class="col-md-4 mb-4">
-                        <div class="instagram-embed">
+                        <div class="instagram-embed d-flex justify-content-center align-items-center">
                             <blockquote class="instagram-media"
                                 data-instgrm-permalink="https://www.instagram.com/reel/DD_Qpb0osIf/?utm_source=ig_embed&amp;utm_campaign=loading"
                                 data-instgrm-version="14">
@@ -722,9 +639,9 @@
         </section>
 
         <!-- Worked With Section -->
-        <section class="worked-with-section py-5" id="sectionWorks">
+        <section class="worked-with-section py-5 text-light" id="sectionWorks">
             <div class="container text-center">
-                <h2 class="mb-5">Worked With</h2>
+                <h2 class="text-light mb-5">Worked With</h2>
                 <div class="row justify-content-center align-items-center">
                     <div class="col-6 col-sm-4 col-md-3 mb-4">
                         <img src="images/gulogo.png" alt="Brand 1" class="brand-logo img-fluid workedWithBrandLogo">
@@ -734,48 +651,59 @@
         </section>
 
         <!-- Services offered -->
-        <section class="services-section" id="sectionServices">
-            <h2 class="section-title mb-5">Services I Offer</h2>
-            <div class="services-container">
-                <div class="service-card frosted-card">Event Hosting</div>
-                <div class="service-card frosted-card">Corporate Emceeing</div>
-                <div class="service-card frosted-card">Wedding Anchoring</div>
-                <div class="service-card frosted-card">College Fests & Cultural Nights</div>
-                <div class="service-card frosted-card">Award Ceremonies</div>
-                <div class="service-card frosted-card">Interviews & Talk Shows</div>
+        <section class="services-section text-center" id="sectionServices">
+            <h2 class="section-title text-light mb-5">Services I Offer</h2>
+            <div class="services-container d-flex flex-wrap justify-content-center">
+                <div
+                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
+                    Event Hosting</div>
+                <div
+                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
+                    Corporate Emceeing</div>
+                <div
+                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
+                    Wedding Anchoring</div>
+                <div
+                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
+                    College Fests & Cultural Nights</div>
+                <div
+                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
+                    Award Ceremonies</div>
+                <div
+                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
+                    Interviews & Talk Shows</div>
             </div>
         </section>
 
         <!-- Testimonials -->
-        <section id="testimonials">
-            <h2 class="section-title mb-5 text-light">Customer Testimonials</h2>
-
-            <div class="chat-container">
-                <div class="chat-bubble left frosted-card">
+        <section id="testimonials" class="text-center">
+            <h2 class="section-title text-light mb-5">Customer Testimonials</h2>
+            <div class="chat-container d-flex flex-column my-0 mx-auto">
+                <div class="chat-bubble left align-self-start text-light frosted-card">
                     <p>"You have made our event memorable, to think Sangeet without you was not possible. Your Voice and
                         modulation of voice is ❤️✨"</p>
-                    <span class="client-name">– Parshva Shah</span>
+                    <span class="client-name d-block fw-bold">– Parshva Shah</span>
                 </div>
             </div>
         </section>
 
         <section id="contact" class="pb-5">
-            <h2 class="section-title my-5 text-center text-light">Book an Event / Contact Form</h2>
-            <form class="booking-form" id="bookingForm">
-                <div class="form-row">
+            <h2 class="section-title text-light my-5 text-center">Book an Event / Contact Form</h2>
+            <form class="booking-form my-0 mx-auto d-flex flex-column" id="bookingForm">
+                <div class="form-row d-flex flex-row flex-wrap">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                 </div>
-                <div class="form-row">
+                <div class="form-row d-flex flex-row flex-wrap">
                     <input type="tel" name="phone" placeholder="Your Phone" required>
                     <input type="text" name="event" placeholder="Event Type" required>
                 </div>
-                <div class="form-row">
+                <div class="form-row d-flex flex-row flex-wrap">
                     <input type="text" id="date" name="date" required placeholder="Enter Event Date"
                         onfocus="(this.type='date')" onblur="if(this.value===''){this.type='text'}">
                     <input type="text" name="instagram" placeholder="Instagram Profile (optional)">
                 </div>
-                <div class="form-row">
+                <div class="form-row d-flex flex-row flex-wrap">
                     <input type="text" name="facebook" placeholder="Facebook Profile (optional)">
                     <input type="text" name="twitter" placeholder="Twitter Profile (optional)">
                 </div>
@@ -785,7 +713,7 @@
         </section>
 
         <section id="contact-cards" class="contact-section">
-            <h2 class="contact-heading py-4 text-center">Connect With Me</h2>
+            <h2 class="contact-heading py-4 text-center text-light">Connect With Me</h2>
             <div class="cards-container py-4">
                 <!-- Email Card -->
                 <div class="contact-card frosted-card">
@@ -908,13 +836,11 @@
                                 duration: 1,
                                 onComplete: () => {
 
-                                    // Hide intro, show main content using class manipulation
                                     document.getElementById('intro-container').classList.add('d-none');
                                     const mainContent = document.getElementById('mainPageContent');
                                     mainContent.classList.remove('d-none');
                                     mainContent.classList.add('d-block');
 
-                                    // Continue with GSAP animations
                                     gsap.to(".navbar", {
                                         visibility: "visible",
                                         opacity: 1,
