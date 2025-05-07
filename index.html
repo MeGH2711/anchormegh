@@ -70,6 +70,11 @@
             color: #f0a500 !important;
         }
 
+        .navbar-nav .nav-link {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
         #main-content {
             visibility: hidden;
             opacity: 0;
@@ -96,30 +101,47 @@
         .marquee-wrapper {
             overflow: hidden;
             position: relative;
-            width: 100%;
-            background: transparent;
-            padding: 20px 0;
         }
 
-        .marquee-content {
+        .marquee-container {
             display: flex;
-            width: fit-content;
-            animation: marquee 40s linear infinite;
-            animation-play-state: running;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+            padding: 50px 0;
         }
 
-        .marquee-wrapper:hover .marquee-content {
+        .fade-left,
+        .fade-right {
+            position: absolute;
+            top: 50px;
+            width: 10vw;
+            height: 250px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .fade-left {
+            left: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.751), transparent);
+        }
+
+        .fade-right {
+            right: 0;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0.751), transparent);
+        }
+
+        .marquee-wrapper:hover .marquee-container {
             animation-play-state: paused;
         }
 
-        .marquee-content img {
+        .marquee-container img {
             height: 250px;
             margin: 0 15px;
             object-fit: contain;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .marquee-content img:hover {
+        .marquee-container img:hover {
             transform: scale(1.025);
             box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25), 0 0 40px rgba(255, 255, 255, 0.15);
             z-index: 1;
@@ -186,6 +208,10 @@
             width: 100%;
             border: none;
             border-radius: 10px;
+        }
+
+        #facebook body {
+            display: none !important;
         }
 
         .btn-instagram {
@@ -530,25 +556,26 @@
         </div>
 
         <!-- Marquee Section -->
-        <div class="container-fluid">
-            <div class="marquee-wrapper py-5">
-                <div class="marquee-content">
-                    <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
-                    <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
-                    <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
-                    <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
-                    <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
-                    <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
-                    <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
-                    <!-- Duplicates for loop effect -->
-                    <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
-                    <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
-                    <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
-                    <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
-                    <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
-                    <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
-                    <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
-                </div>
+        <div class="marquee-wrapper">
+            <div class="fade-left"></div>
+            <div class="fade-right"></div>
+
+            <div class="marquee-container">
+                <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
+                <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
+                <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
+                <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
+                <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
+                <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
+                <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
+                <!-- Duplicates for loop effect -->
+                <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
+                <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
+                <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
+                <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
+                <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
+                <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
+                <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
             </div>
         </div>
 
@@ -860,6 +887,15 @@
                                         stagger: 0.2,
                                         ease: "power4.out"
                                     });
+
+                                    gsap.to(".navbar-nav .nav-link", {
+                                        opacity: 1,
+                                        y: 0,
+                                        duration: 1,
+                                        stagger: 0.2,
+                                        ease: "power3.out"
+                                    });
+
                                 }
                             });
                         }
