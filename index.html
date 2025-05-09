@@ -105,7 +105,7 @@
 
         .marquee-container {
             display: flex;
-            animation: marquee 20s linear infinite;
+            animation: marquee 40s linear infinite;
             white-space: nowrap;
             padding: 50px 0;
         }
@@ -499,6 +499,7 @@
                 padding: 2px;
             }
         }
+        
     </style>
 </head>
 
@@ -525,7 +526,7 @@
         <nav class="navbar navbar-expand-lg bg-tranparent position-absolute w-100">
             <div class="container-fluid">
                 <a class="navbar-brand py-2 h-auto" href="/">
-                    <img src="images/MP.png" class="img-fluid" alt="Logo">
+                    <img src="images/MP.png" id="navbarBrandImage" class="img-fluid" alt="Logo">
                 </a>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
@@ -568,6 +569,7 @@
                 <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
                 <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
                 <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
+                <img src="images/8.JPG" class="rounded-3" alt="Event 8" />
                 <!-- Duplicates for loop effect -->
                 <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
                 <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
@@ -576,6 +578,7 @@
                 <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
                 <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
                 <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
+                <img src="images/8.JPG" class="rounded-3" alt="Event 8" />
             </div>
         </div>
 
@@ -871,7 +874,7 @@
                                     gsap.to(".navbar", {
                                         visibility: "visible",
                                         opacity: 1,
-                                        duration: 1
+                                        duration: 3
                                     });
 
                                     gsap.to("#main-content", {
