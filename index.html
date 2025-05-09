@@ -18,6 +18,18 @@
             background: #0d0d0d;
             color: #ffffff;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple-animation 0.5s linear;
+            pointer-events: none;
+            width: 50px;
+            height: 50px;
         }
 
         #intro-container {
@@ -423,6 +435,53 @@
             color: black;
         }
 
+        /* Keyframes */
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Media Queries */
+
+        @media (max-width: 768px) {
+            .marquee-content img {
+                height: 150px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 992px) {
+            .instagram-embed iframe {
+                scale: 0.60;
+            }
+
+            .instagram-embed {
+                padding: 2px;
+            }
+        }
+
+        @media (min-width: 992px) and (max-width: 1200px) {
+            .instagram-embed iframe {
+                scale: 0.85;
+            }
+
+            .instagram-embed {
+                padding: 2px;
+            }
+        }
+
         @media screen and (max-width: 600px) {
             #intro-container {
                 flex-direction: column;
@@ -463,43 +522,6 @@
                 padding: 20px;
             }
         }
-
-        @keyframes marquee {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .marquee-content img {
-                height: 150px;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 992px) {
-            .instagram-embed iframe {
-                scale: 0.60;
-            }
-
-            .instagram-embed {
-                padding: 2px;
-            }
-        }
-
-        @media (min-width: 992px) and (max-width: 1200px) {
-            .instagram-embed iframe {
-                scale: 0.85;
-            }
-
-            .instagram-embed {
-                padding: 2px;
-            }
-        }
-        
     </style>
 </head>
 
@@ -816,6 +838,18 @@
                 });
 
             this.reset();
+        });
+
+        document.body.addEventListener("click", function (e) {
+            const ripple = document.createElement("div");
+            ripple.className = "ripple";
+            ripple.style.left = `${e.pageX - 25}px`;
+            ripple.style.top = `${e.pageY - 25}px`;
+            document.body.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         });
 
         function showToast(type, message) {
