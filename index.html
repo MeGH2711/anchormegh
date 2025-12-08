@@ -1,946 +1,2093 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anchor Megh</title>
+    <meta name="description"
+        content="Anchor Megh is a professional Emcee and Event Host based in Gujarat, specializing in Weddings, Corporate Events, Concerts, and Sangeet Sandhyas.">
+    <meta name="keywords"
+        content="Anchor Megh, Emcee, Event Host, Wedding Anchor, Corporate Anchor, Ahmedabad Anchor, Stage Voice">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://anchormegh.vercel.app/">
+    <meta property="og:title" content="Anchor Megh | The Stage Voice">
+    <meta property="og:description"
+        content="Elevating moments into memories. Professional Event Host for Weddings & Corporate Events.">
+    <meta property="og:image" content="https://anchormegh.vercel.app/images/8.webp">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Anchor Megh | The Stage Voice">
+    <meta property="twitter:description"
+        content="Elevating moments into memories. Professional Event Host for Weddings & Corporate Events.">
+    <meta property="twitter:image" content="https://anchormegh.vercel.app/images/8.webp">
+
+    <title>Anchor Megh | The Stage Voice</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Syne:wght@400;600;700;800&display=swap"
         rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
     <style>
-        body {
-            background: #0d0d0d;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            position: relative;
-        }
-
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            transform: scale(0);
-            animation: ripple-animation 0.5s linear;
-            pointer-events: none;
-            width: 50px;
-            height: 50px;
-        }
-
-        #intro-container {
-            max-width: 90%;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        #intro-words {
-            background-color: #000000;
-            z-index: 0;
-        }
-
-        .intro-word {
-            font-size: 5vw;
-            margin: 0 1rem;
-            color: #ffffff;
-            opacity: 0;
-        }
-
-        .navbar {
-            padding: 1rem 2rem;
-            z-index: 20;
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        .navbar-brand img {
-            width: 80px;
-        }
-
-        #landing-video-section {
-            z-index: -2;
-        }
-
-        #bg-video {
-            opacity: 0.05;
-            z-index: -2;
-        }
-
-        .navbar-nav .nav-link {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            color: #ffffff !important;
-            padding: 0 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #f0a500 !important;
-        }
-
-        .navbar-nav .nav-link {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        #main-content {
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        header h1 {
-            font-size: 4rem;
-            z-index: 2;
-        }
-
-        header h1 span {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .lead {
-            z-index: 2;
-        }
-
-        #title {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .marquee-wrapper {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .marquee-container {
-            display: flex;
-            animation: marquee 40s linear infinite;
-            white-space: nowrap;
-            padding: 50px 0;
-        }
-
-        .fade-left,
-        .fade-right {
-            position: absolute;
-            top: 50px;
-            width: 10vw;
-            height: 250px;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .fade-left {
-            left: 0;
-            background: linear-gradient(to right, rgba(0, 0, 0, 0.751), transparent);
-        }
-
-        .fade-right {
-            right: 0;
-            background: linear-gradient(to left, rgba(0, 0, 0, 0.751), transparent);
-        }
-
-        .marquee-wrapper:hover .marquee-container {
-            animation-play-state: paused;
-        }
-
-        .marquee-container img {
-            height: 250px;
-            margin: 0 15px;
-            object-fit: contain;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .marquee-container img:hover {
-            transform: scale(1.025);
-            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25), 0 0 40px rgba(255, 255, 255, 0.15);
-            z-index: 1;
-        }
-
-        .about-me {
-            background: rgba(255, 255, 255, 0.03);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .about-me h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-
-        .about-me p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            max-width: 800px;
-        }
-
-        .stats-section {
-            background-color: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .stat-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
-            backdrop-filter: blur(8px);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-        }
-
-        .instagram-content h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-
-        .instagram-embed {
-            background-color: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 10px;
-        }
-
-        .instagram-embed iframe {
-            width: 100%;
-            border: none;
-            border-radius: 10px;
-        }
-
-        #facebook body {
-            display: none !important;
-        }
-
-        .btn-instagram {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            font-weight: 600;
-            border-radius: 50px;
-            padding: 12px 24px;
-            font-size: 1rem;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease-in-out;
-            gap: 10px;
-        }
-
-        .btn-instagram:hover {
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
-            transform: translateY(-2px);
-            text-decoration: none;
-            color: white;
-        }
-
-        .worked-with-section {
-            background-color: rgba(255, 255, 255, 0.03);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .worked-with-section h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-
-        .brand-logo {
-            max-height: 80px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            transform-style: preserve-3d;
-            will-change: transform;
-            cursor: pointer;
-        }
-
-        .brand-logo:hover {
-            transform: perspective(600px) rotateY(20deg) rotateX(2deg) scale(1.5);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .services-section {
-            padding: 80px 20px;
-        }
-
-        .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-
-        .services-container {
-            gap: 20px;
-        }
-
-        .service-card {
-            padding: 30px 40px;
-            font-size: 1.2rem;
-            width: 350px;
-            height: 150px;
-        }
-
-        #testimonials {
-            background-color: rgba(255, 255, 255, 0.03);
-            padding: 2rem 1rem;
-        }
-
-        #testimonials h2 {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .chat-container {
-            gap: 1.5rem;
-            max-width: 90vw;
-        }
-
-        .chat-bubble {
-            max-width: 60%;
-            padding: 1rem 1.25rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            -webkit-backdrop-filter: blur(10px);
-        }
-
-        .chat-bubble.left {
-            border-bottom-left-radius: 0;
-        }
-
-        .chat-bubble.right {
-            border-bottom-right-radius: 0;
-        }
-
-        .client-name {
-            margin-top: 0.5rem;
-            color: #bebebe;
-            font-size: 0.9rem;
-        }
-
-        .booking-form {
-            max-width: 90vw;
-            gap: 1rem;
-        }
-
-        .booking-form .form-row {
-            gap: 1rem;
-        }
-
-        .booking-form input,
-        .booking-form textarea {
-            padding: 0.75rem;
-            border: 2px solid #cccccc;
-            border-radius: 10px;
-            font-size: 1rem;
-            background: transparent;
-            color: #ffffff;
-            outline: none;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .booking-form input::placeholder,
-        .booking-form textarea::placeholder {
-            color: #aaaaaa;
-        }
-
-        .booking-form input:focus,
-        .booking-form textarea:focus {
-            border-color: #007BFF;
-        }
-
-        .booking-form button {
-            background-color: #ffffff;
-            color: rgb(0, 0, 0);
-            padding: 0.75rem 2rem;
-            font-size: 1rem;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            align-self: flex-start;
-        }
-
-        .booking-form button:hover {
-            background-color: #d7d7d7;
-        }
-
-        .contact-section {
-            background-color: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-        }
-
-        .contact-heading {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            max-width: 90vw;
-            margin: auto;
-        }
-
-        .contact-card {
-            padding: 1.5rem;
-        }
-
-        .contact-card a {
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .contact-card a:hover {
-            color: #cccccc;
-            text-decoration: none;
-        }
-
-        .frosted-card {
-            position: relative;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-            backdrop-filter: blur(5px);
-        }
-
-        .frosted-card:hover {
-            background: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 12px 35px rgba(255, 255, 255, 0.15);
-            transform: translateY(-8px);
-            backdrop-filter: blur(8px);
+        :root {
+            --bg-dark: #080808;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --gold: #D4AF37;
+            --text-main: #f0f0f0;
+            --text-muted: #888;
+            --font-head: 'Syne', sans-serif;
+            --font-body: 'Manrope', sans-serif;
+        }
+
+        ::-moz-selection {
+            color: black;
+            background: white;
         }
 
         ::selection {
-            background-color: white;
             color: black;
+            background: white;
         }
 
-        ::webkit-selection {
-            background-color: white;
-            color: black;
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            cursor: none;
         }
 
-        /* Keyframes */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: var(--font-head);
+            font-weight: 700;
+            line-height: 1.1;
+        }
 
-        @keyframes marquee {
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 50;
+            opacity: 0.04;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+        }
+
+        .cursor-outer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-inner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 6px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 20000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .counter {
+            font-family: var(--font-head);
+            font-size: 5rem;
+            font-weight: 700;
+        }
+
+        .navbar {
+            padding: 15px 0;
+            transition: background-color 0.4s ease, backdrop-filter 0.4s ease, border-bottom 0.4s ease, padding 0.3s;
+            background-color: transparent;
+            border-bottom: 1px solid transparent;
+        }
+
+        .navbar.scrolled:hover {
+            background-color: rgba(8, 8, 8, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand img {
+            width: 50px;
+            transition: width 0.3s;
+        }
+
+        .navbar-brand,
+        .navbar-toggler {
+            position: relative;
+            z-index: 1050;
+        }
+
+        .nav-link {
+            color: var(--text-main) !important;
+            font-family: var(--font-head);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            position: relative;
+            padding: 8px 0 !important;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: #000;
+                z-index: 1040;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateY(-100%);
+                transition: transform 0.4s ease-in-out;
+                opacity: 0;
+            }
+
+            .navbar-collapse.show {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .navbar-collapse.collapsing {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background-color: #000;
+                z-index: 1040;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: transform 0.4s ease-in-out;
+            }
+
+            .navbar-nav {
+                width: 100%;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .nav-item {
+                opacity: 0;
+                animation: fadeInUp 0.5s ease forwards;
+                animation-delay: 0.2s;
+            }
+
+            .nav-item:nth-child(1) {
+                animation-delay: 0.1s;
+            }
+
+            .nav-item:nth-child(2) {
+                animation-delay: 0.2s;
+            }
+
+            .nav-item:nth-child(3) {
+                animation-delay: 0.3s;
+            }
+
+            .nav-item:nth-child(4) {
+                animation-delay: 0.4s;
+            }
+
+            .nav-item:nth-child(5) {
+                animation-delay: 0.5s;
+            }
+
+            .nav-link {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #fff !important;
+                border-bottom: none;
+            }
+
+            .nav-link:hover {
+                color: var(--gold) !important;
+            }
+
+            .nav-link::before {
+                display: none;
+            }
+        }
+
+        @keyframes fadeInUp {
             from {
-                transform: translateX(0);
+                opacity: 0;
+                transform: translateY(20px);
             }
 
             to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-bg-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.2);
+        }
+
+        .hero-bg-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 25%;
+            background: linear-gradient(to top, var(--bg-dark) 0%, rgba(8, 8, 8, 0) 100%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            text-align: center;
+        }
+
+        .display-hero {
+            font-size: clamp(4rem, 12vw, 10rem);
+            text-transform: uppercase;
+            letter-spacing: -3px;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+
+        .display-hero.filled {
+            -webkit-text-stroke: 0;
+            color: #fff;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.7;
+        }
+
+        .marquee-wrap {
+            overflow: hidden;
+            background: var(--gold);
+            padding: 1rem 0;
+            white-space: nowrap;
+            transform: rotate(-2deg) scale(1.05);
+            margin: 5rem 0;
+        }
+
+        .marquee-text {
+            display: inline-block;
+            font-family: var(--font-head);
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #000;
+            animation: move-left 20s linear infinite;
+        }
+
+        @keyframes move-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
                 transform: translateX(-50%);
             }
         }
 
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
+        .btn-gold {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gold);
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: -1;
+        }
+
+        .btn-gold:hover {
+            color: #000;
+        }
+
+        .btn-gold:hover::before {
+            width: 100%;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            height: 100%;
+            transition: transform 0.4s ease, border-color 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .reveal-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            height: 500px;
+        }
+
+        .reveal-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.2);
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+
+        .reveal-img-wrapper:hover img {
+            filter: grayscale(0%);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .t-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+            backdrop-filter: blur(10px);
+        }
+
+        .t-card::before {
+            content: '';
+            position: absolute;
+            top: var(--y, -50%);
+            left: var(--x, -50%);
+            transform: translate(-50%, -50%);
+            width: 0px;
+            height: 0px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: width 0.3s, height 0.3s, opacity 0.3s;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .t-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .t-card:hover::before {
+            width: 500px;
+            height: 500px;
+            opacity: 1;
+        }
+
+        .t-watermark {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            font-size: 8rem;
+            color: rgba(255, 255, 255, 0.03);
+            font-family: var(--font-head);
+            line-height: 1;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .t-card:hover .t-watermark {
+            color: rgba(212, 175, 55, 0.1);
+        }
+
+        .t-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .t-stars {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 5px;
+        }
+
+        .t-text {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #e0e0e0;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .t-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+            margin-top: auto;
+        }
+
+        .t-avatar {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            font-family: var(--font-head);
+        }
+
+        .t-info h5 {
+            font-size: 1rem;
+            margin: 0;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .t-info span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .t-card.text-center .t-content {
+            justify-content: center;
+        }
+
+        .brand-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .brand-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+
+            flex: 1 1 220px;
+            max-width: 300px;
+        }
+
+        .brand-card:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .brand-logo-wrapper {
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-logo-wrapper img {
+            max-height: 100%;
+            max-width: 120px;
+            object-fit: contain;
+            opacity: 0.6;
+            transition: all 0.4s ease;
+        }
+
+        .brand-logo-wrapper i {
+            font-size: 2.5rem;
+            color: #fff;
+            opacity: 0.5;
+            transition: all 0.4s ease;
+        }
+
+        .brand-card:hover .brand-logo-wrapper img {
+            filter: grayscale(0%) brightness(100%) contrast(1);
+            opacity: 1;
+        }
+
+        .brand-card:hover .brand-logo-wrapper i {
+            color: var(--gold);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .brand-name {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-desc {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .gallery-grid {
+            column-count: 3;
+            column-gap: 20px;
+        }
+
+        @media (max-width: 991px) {
+            .gallery-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-grid {
+                column-count: 1;
+            }
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+        }
+
+        .gallery-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: filter 0.3s ease;
+            filter: grayscale(80%);
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+        }
+
+        .gallery-card:hover img {
+            filter: grayscale(0%);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-card:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay i {
+            color: var(--gold);
+            font-size: 2rem;
+            transform: scale(0.5);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-card:hover .gallery-overlay i {
+            transform: scale(1);
+        }
+
+        #modalImage {
+            max-height: 90vh !important;
+            width: auto !important;
+            max-width: 95vw;
+            object-fit: contain;
+        }
+
+        #imageModal .modal-dialog {
+            max-width: fit-content;
+            min-width: 300px;
+        }
+
+        .modal-backdrop.show {
+            opacity: 0.85;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        #imageModal .modal-content {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
+
+        #imageModal .modal-dialog {
+            max-width: fit-content;
+            margin: 1.75rem auto;
+        }
+
+        .modal-image-container {
+            position: relative;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+            overflow: hidden;
+        }
+
+        #modalImage {
+            max-height: 85vh !important;
+            width: auto !important;
+            max-width: 90vw;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            display: block;
+            border-radius: 8px;
+        }
+
+        .custom-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .custom-modal-close:hover {
+            background: var(--gold);
+            color: #000;
+            transform: rotate(90deg);
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0));
+            color: #fff;
+            padding: 30px 20px 15px;
+            font-family: var(--font-head);
+            font-size: 1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease 0.2s;
+        }
+
+        .modal.show .modal-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .igiframe {
+            border-radius: 20px;
+        }
+
+        .contact-link {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--gold);
+        }
+
+        .social-icon-btn {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-icon-btn:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+            background: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-control-custom {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 1.1rem;
+            font-family: var(--font-body);
+            width: 100%;
+            transition: border-color 0.3s, background-size 0.3s;
+            background-image: linear-gradient(to right, var(--gold), var(--gold));
+            background-size: 0% 1px;
+            background-repeat: no-repeat;
+            background-position: bottom center;
+        }
+
+        .form-control-custom:focus {
+            background-color: transparent;
+            outline: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            background-size: 100% 1px;
+            color: #fff;
+            box-shadow: none;
+        }
+
+        .form-label-custom {
+            position: absolute;
+            top: 10px;
+            left: 0;
+            font-size: 1rem;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: 0.3s ease all;
+            font-family: var(--font-body);
+        }
+
+        .form-control-custom:focus~.form-label-custom,
+        .form-control-custom:not(:placeholder-shown)~.form-label-custom {
+            top: -20px;
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .event-selection-label {
+            font-family: var(--font-head);
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chip-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip-input {
+            display: none;
+        }
+
+        .chip-label {
+            padding: 8px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #ccc;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .chip-label:hover {
+            border-color: var(--gold);
+            color: #fff;
+        }
+
+        .chip-input:checked+.chip-label {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            font-weight: 600;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.6;
+            cursor: pointer;
+        }
+
+        footer {
+            opacity: 0.5;
+        }
+
+        #toast-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .custom-toast {
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--gold);
+            color: #fff;
+            padding: 16px 24px;
+            border-radius: 12px;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            min-width: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            opacity: 0;
+            transform: translateX(50px);
+            animation: toastSlideIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .custom-toast.error {
+            border-left-color: #ff4d4d;
+        }
+
+        .custom-toast.error .toast-icon {
+            color: #ff4d4d;
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .toast-icon {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .toast-close {
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s;
+            padding: 0;
+            margin-left: 15px;
+        }
+
+        .toast-close:hover {
+            color: #fff;
+        }
+
+        .custom-toast.hiding {
+            animation: toastSlideOut 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes toastSlideIn {
+            0% {
                 opacity: 0;
+                transform: translateX(50px) scale(0.95);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
             }
         }
 
-        /* Media Queries */
-
-        @media (max-width: 768px) {
-            .marquee-content img {
-                height: 150px;
-            }
-        }
-
-        @media (min-width: 768px) and (max-width: 992px) {
-            .instagram-embed iframe {
-                scale: 0.60;
+        @keyframes toastSlideOut {
+            0% {
+                opacity: 1;
+                transform: translateX(0);
             }
 
-            .instagram-embed {
-                padding: 2px;
-            }
-        }
-
-        @media (min-width: 992px) and (max-width: 1200px) {
-            .instagram-embed iframe {
-                scale: 0.85;
-            }
-
-            .instagram-embed {
-                padding: 2px;
-            }
-        }
-
-        @media screen and (max-width: 600px) {
-            #intro-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .intro-word {
-                font-size: 1rem;
-                font-weight: bold;
-                margin: 0 0.5rem;
-                color: #fff;
+            100% {
                 opacity: 0;
-            }
-
-            #intro-left,
-            #intro-right {
-                width: 100%;
-                padding: 10px 0;
-            }
-
-            #intro-left img {
-                width: 80%;
-                height: auto;
-            }
-
-            .instagram-embed iframe {
-                scale: 0.85;
-            }
-
-            .instagram-embed {
-                padding: 2px;
+                transform: translateX(50px) scale(0.95);
             }
         }
 
-        @media (max-width: 768px) {
-            .service-card {
-                width: 100%;
-                padding: 20px;
-            }
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0px 0px 20px rgba(37, 211, 102, 0.4);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            color: #fff;
+            background-color: #20bd5a;
         }
     </style>
 </head>
 
-<body class="m-0 overflow-x-hidden">
+<body>
 
-    <div id="intro-container" class="h-auto my-0 mx-auto">
-        <div id="intro-words"
-            class="d-flex justify-content-center align-items-center position-absolute top-0 start-0 w-100 vh-100">
-            <h2 class="intro-word fw-bold">Dynamic</h2>
-            <h2 class="intro-word fw-bold">.</h2>
-            <h2 class="intro-word fw-bold">Energetic</h2>
-            <h2 class="intro-word fw-bold">.</h2>
-            <h2 class="intro-word fw-bold">Charismatic</h2>
+    <a href="https://wa.me/919510983397?text=Hi%20Anchor%20Megh,%20I%20want%20to%20inquire%20about%20an%20event."
+        class="float-wa text-decoration-none" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <div class="noise"></div>
+
+    <div class="cursor-outer"></div>
+    <div class="cursor-inner"></div>
+
+    <div class="preloader">
+        <div class="counter text-gradient">0%</div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="images/MP.webp" alt="Logo" width="50">
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-white"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav gap-4">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#works">Works</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="hero-bg-container">
+            <img src="images/WebsiteVideo.gif" alt="Anchor Megh Background">
+        </div>
+
+        <div class="container hero-content">
+            <h1 class="display-hero">Anchor</h1>
+            <h1 class="display-hero filled">Megh</h1>
+            <p class="text-uppercase mt-4" style="letter-spacing: 4px; font-size: 0.9rem;">The Voice of the Stage</p>
+            <div class="mt-5">
+                <a href="#contact" class="btn-gold">Book Now</a>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-text">
+            Corporate • Weddings • Sangeet • Haldi • Launch Events • Concerts • Interviews • Corporate • Weddings •
+            Sangeet • Haldi •
+            Launch Events • Concerts • Interviews •
         </div>
     </div>
 
-    <div id="mainPageContent" class="d-none">
+    <section id="about" class="py-5">
+        <div class="container py-5">
+            <span class="text-uppercase letter-spacing-2 mb-3 d-block text-center" style="color: var(--gold);">About
+                Me</span>
+            <h2 class="display-4 mb-5 text-center">Elevating moments into <span
+                    class="fst-italic text-gradient">memories.</span></h2>
 
-        <div id="landing-video-section" class="position-fixed top-0 start-0 vh-100 vw-100 overflow-hidden">
-            <img id="bg-video" src="WebsiteVideo.gif" alt="Landing Background"
-                class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" />
+            <div class="row g-4 align-items-stretch">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card d-flex flex-column justify-content-between p-4 p-md-5"
+                        style="min-height: 400px; border-color: var(--gold);">
+                        <div>
+                            <h3 class="display-5 mb-2" style="color: var(--gold);">4+</h3>
+                            <p class="text-white text-uppercase mb-4">Years of Experience</p>
+                            <p class="lead" style="color: #ccc;">A proven track record of successful events and
+                                satisfied clients
+                                across various industries.</p>
+                        </div>
+                        <a href="#contact" class="btn-gold mt-4 text-center">Check Availability</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 order-lg-2">
+                    <div class="reveal-img-wrapper" data-speed="0.8" style="height: 100%;">
+                        <img src="images/10.webp" alt="Megh Profile">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 order-lg-1">
+                    <div class="h-100 d-flex flex-column justify-content-between">
+                        <p class="lead text-white mb-4">
+                            I don't just hold a microphone; I hold the audience's attention. As a dynamic emcee, I
+                            bridge
+                            the gap between the stage and the crowd, ensuring every second is engaging and electric.
+                        </p>
+
+                        <div class="glass-card mt-4 p-4">
+                            <h4 class="h6 text-uppercase mb-3" style="color: var(--gold);">Key Highlights</h4>
+                            <div class="row">
+                                <div class="col-6 pb-4">
+                                    <h2 class="m-0 text-gradient">250+</h2>
+                                    <small class="text-white text-uppercase">Events Hosted</small>
+                                </div>
+                                <div class="col-6 pb-4">
+                                    <h2 class="m-0 text-gradient">100%</h2>
+                                    <small class="text-white text-uppercase">Client Satisfaction</small>
+                                </div>
+                                <div class="col-6 pb-4">
+                                    <h2 class="m-0 text-gradient">4+</h2>
+                                    <small class="text-white text-uppercase">Years of Experience</small>
+                                </div>
+                                <div class="col-6 pb-4">
+                                    <h2 class="m-0 text-gradient">10,000+</h2>
+                                    <small class="text-white text-uppercase">People Engaged</small>
+                                </div>
+                            </div>
+                            <h5 class="text-uppercase mb-3" style="color: var(--gold); font-size: 0.9rem;">Linguistic
+                                Proficiency
+                            </h5>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span
+                                    class="badge rounded-pill border border-secondary text-white fw-light px-3 py-2">English
+                                    (Fluent)</span>
+                                <span
+                                    class="badge rounded-pill border border-secondary text-white fw-light px-3 py-2">Hindi
+                                    (Conversational)</span>
+                                <span
+                                    class="badge rounded-pill border border-secondary text-white fw-light px-3 py-2">Gujarati
+                                    (Native)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <p class="text-white fst-italic">"From the grandeur of weddings to the professionalism of corporate
+                        summits, I adapt my style to fit the vibe perfectly. My goal? To make sure your guests leave
+                        with a smile."</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <nav class="navbar navbar-expand-lg bg-tranparent position-absolute w-100">
-            <div class="container-fluid">
-                <a class="navbar-brand py-2 h-auto" href="/">
-                    <img src="images/MP.png" id="navbarBrandImage" class="img-fluid" alt="Logo">
-                </a>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sectionAboutMe">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sectionInstagram">Instagram</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sectionWorks">Works</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#sectionServices">Services Offered</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                    </ul>
+    <section id="testimonials" class="py-5">
+        <div class="container py-5">
+            <div class="row mb-5 align-items-end">
+                <div class="col-lg-7">
+                    <span class="text-uppercase letter-spacing-2" style="color: var(--gold); font-size: 0.9rem;">What
+                        People Say</span>
+                    <h2 class="display-4 mt-2">Voices from the <span class="text-gradient">Crowd.</span></h2>
+                </div>
+                <div class="col-lg-5 text-lg-end">
+                    <p class="text-muted mb-1">Real feedback from clients and audiences.</p>
                 </div>
             </div>
-        </nav>
 
-        <div id="main-content">
-            <header class="vh-100 d-flex justify-content-center align-items-center text-center position-relative">
-                <div>
-                    <p class="lead">Welcome to the world of</p>
-                    <h1 class="fw-bold d-flex flex-wrap justify-content-center" id="title">
-                        <span class="me-3 d-inline-block">OG</span>
-                        <span class="me-3 d-inline-block">Anchor</span>
-                        <span class="me-3 d-inline-block">Megh</span>
-                    </h1>
-                    <a href="#contact" class="btn btn-light my-3 rounded-pill fw-bold">Book Now</a>
+            <div class="testimonial-grid">
+
+                <div class="t-card">
+                    <div class="t-watermark">“</div>
+                    <div class="t-content">
+                        <div class="t-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="t-text">
+                            "You have made our event memorable, to think Sangeet without you was not possible. Your
+                            Voice and modulation of voice is ❤️✨"
+                        </p>
+                        <div class="t-author">
+                            <div class="t-avatar">P</div>
+                            <div class="t-info">
+                                <h5>Parshva Shah</h5>
+                                <span>Wedding Client</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </header>
+
+                <div class="t-card">
+                    <div class="t-watermark">“</div>
+                    <div class="t-content">
+                        <div class="t-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="t-text">
+                            "Being part of events you anchored—from Dark Flames to Prom Night 2024—has always been an
+                            engaging, fun, and truly wonderful experience."
+                        </p>
+                        <div class="t-author">
+                            <div class="t-avatar">K</div>
+                            <div class="t-info">
+                                <h5>Kuldeep Soni</h5>
+                                <span>Audience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t-card">
+                    <div class="t-watermark">“</div>
+                    <div class="t-content">
+                        <div class="t-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="t-text">
+                            "He's one of the most natural anchor's I've worked with. He doesn't need a script or
+                            planning or anything!! He'll just go on the stage and he'll nail it. He knows how to connect
+                            with the audience and that's the best part of him!!"
+                        </p>
+                        <div class="t-author">
+                            <div class="t-avatar">Z</div>
+                            <div class="t-info">
+                                <h5>Zarana Vadolia</h5>
+                                <span>Anchor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="t-card d-flex flex-column justify-content-center align-items-center text-center">
+                    <div class="t-content">
+                        <div class="mb-4" style="font-size: 3rem; color: var(--gold);">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4 class="mb-3">Your Event Next?</h4>
+                        <p class="text-muted mb-4">Join the list of happy clients and let's make your next event a
+                            massive success.</p>
+                        <a href="#contact" class="btn-gold" style="padding: 10px 30px; font-size: 0.8rem;">Book Anchor
+                            Megh</a>
+                    </div>
+                </div>
+
+            </div>
         </div>
+    </section>
 
-        <!-- Marquee Section -->
-        <div class="marquee-wrapper">
-            <div class="fade-left"></div>
-            <div class="fade-right"></div>
+    <section id="trusted-by" class="py-5 border-top border-secondary"
+        style="border-color: rgba(255,255,255,0.05) !important;">
+        <div class="container py-4">
 
-            <div class="marquee-container">
-                <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
-                <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
-                <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
-                <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
-                <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
-                <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
-                <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
-                <img src="images/8.JPG" class="rounded-3" alt="Event 8" />
-                <!-- Duplicates for loop effect -->
-                <img src="images/1.JPG" class="rounded-3" alt="Event 1" />
-                <img src="images/2.JPG" class="rounded-3" alt="Event 2" />
-                <img src="images/3.JPG" class="rounded-3" alt="Event 3" />
-                <img src="images/4.JPG" class="rounded-3" alt="Event 4" />
-                <img src="images/5.JPG" class="rounded-3" alt="Event 5" />
-                <img src="images/6.JPG" class="rounded-3" alt="Event 6" />
-                <img src="images/7.JPG" class="rounded-3" alt="Event 7" />
-                <img src="images/8.JPG" class="rounded-3" alt="Event 8" />
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8 text-center">
+                    <span class="text-uppercase letter-spacing-2" style="color: var(--gold); font-size: 0.8rem;">Clients
+                        & Collaborations</span>
+                    <h3 class="display-6 mt-2">Trusted by <span class="text-gradient">Organizations</span></h3>
+                </div>
+            </div>
+
+            <div class="brand-grid">
+
+                <div class="brand-card">
+                    <div class="brand-logo-wrapper">
+                        <img src="images/gulogo.webp">
+                    </div>
+                    <h4 class="brand-name">Gandhinagar University</h4>
+                    <p class="brand-desc">Educational Institution</p>
+                </div>
+
             </div>
         </div>
+    </section>
 
-        <!-- About Me Section -->
-        <section class="about-me py-5 text-light" id="sectionAboutMe">
-            <div class="container text-center">
-                <h2 class="mb-4">About Me</h2>
-                <p class="lead mt-0 mb-4 mx-auto">
-                    I’m <strong>Anchor Megh</strong> – a dynamic, high-energy host who lives to engage, entertain, and
-                    elevate every event. With years of experience across stages big and small, I bring charisma,
-                    spontaneity, and a deep connection with every audience.
-                </p>
-                <p class="mx-auto my-0">
-                    From cultural fests and weddings to corporate shows and award ceremonies, I’ve had the honor of
-                    being
-                    the voice behind countless unforgettable moments. Let's make your next event one to remember!
-                </p>
+    <section id="gallery" class="py-5">
+        <div class="container py-5">
+
+            <div class="row mb-5 align-items-end">
+                <div class="col-lg-7">
+                    <span class="text-uppercase letter-spacing-2"
+                        style="color: var(--gold); font-size: 0.9rem;">Vibes</span>
+                    <h2 class="display-4 mt-2">Moments in <span class="text-gradient">Frame</span></h2>
+                </div>
+                <div class="col-lg-5 text-lg-end">
+                    <p class="text-muted mb-1">Capturing the energy of every event</p>
+                </div>
             </div>
-        </section>
 
-        <!-- Stats Cards Section -->
-        <section class="stats-section text-light py-5">
-            <div class="container">
-                <div class="row text-center">
-                    <div class="col-md-4 my-2">
-                        <div class="stat-card position-relative p-4 rounded-4 shadow">
-                            <h3 class="display-5 fw-bold">25+</h3>
-                            <p class="mb-0">Events Hosted</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 my-2">
-                        <div class="stat-card position-relative p-4 rounded-4 shadow">
-                            <h3 class="display-5 fw-bold">4+</h3>
-                            <p class="mb-0">Years of Experience</p>
-                        </div>
-                    </div>
-                    <div class="col-md-4 my-2">
-                        <div class="stat-card position-relative p-4 rounded-4 shadow">
-                            <h3 class="display-5 fw-bold">10,000+</h3>
-                            <p class="mb-0">People Engaged</p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/7.webp" alt="Prom Night 2024 - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Latest Instagram Content Section -->
-        <section class="instagram-content py-5 text-light text-center" id="sectionInstagram">
-            <div class="container text-center">
-                <h2 class="mb-4 text-light">Latest Instagram Posts</h2>
-                <div class="follow-instagram-btn mb-4">
-                    <a href="https://www.instagram.com/anchormegh" target="_blank"
-                        class="btn btn-instagram text-light border-0 text-decoration-none d-inline-flex align-items-center">
-                        <i class="fab fa-instagram"></i> Follow on Instagram
-                    </a>
-                </div>
-                <div class="row">
-                    <!-- Instagram Post 1 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="instagram-embed d-flex justify-content-center align-items-center">
-                            <blockquote class="instagram-media"
-                                data-instgrm-permalink="https://www.instagram.com/reel/DIqkp32iY7I/?utm_source=ig_embed&amp;utm_campaign=loading"
-                                data-instgrm-version="14"
-                                style="background:#FFF; border:0; margin: 1em auto; max-width:540px; min-width:326px; padding:0; width:99%;">
-                            </blockquote>
-                        </div>
-                    </div>
-                    <!-- Instagram Post 2 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="instagram-embed d-flex justify-content-center align-items-center">
-                            <blockquote class="instagram-media"
-                                data-instgrm-permalink="https://www.instagram.com/reel/DGIkRGpo5-j/?utm_source=ig_embed&amp;utm_campaign=loading"
-                                data-instgrm-version="14">
-                            </blockquote>
-                        </div>
-                    </div>
-                    <!-- Instagram Post 3 -->
-                    <div class="col-md-4 mb-4">
-                        <div class="instagram-embed d-flex justify-content-center align-items-center">
-                            <blockquote class="instagram-media"
-                                data-instgrm-permalink="https://www.instagram.com/reel/DD_Qpb0osIf/?utm_source=ig_embed&amp;utm_campaign=loading"
-                                data-instgrm-version="14">
-                            </blockquote>
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/10.webp" alt="Republic Day - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- Worked With Section -->
-        <section class="worked-with-section py-5 text-light" id="sectionWorks">
-            <div class="container text-center">
-                <h2 class="text-light mb-5">Worked With</h2>
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-6 col-sm-4 col-md-3 mb-4">
-                        <img src="images/gulogo.png" alt="Brand 1" class="brand-logo img-fluid workedWithBrandLogo">
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/2.webp" alt="Prom Night 2024 - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/3.webp" alt="Holi Celebration 2024 - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/4.webp" alt="Dark Flames 2022 - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/5.webp" alt="Friendship Day 2024 - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/9.webp" alt="Haldi Ceremony">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/1.webp" alt="Friendship Day 2024 - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-card" data-bs-toggle="modal" data-bs-target="#imageModal">
+                        <img src="images/6.webp" alt="Prom Night 2024 - Gandhinagar University">
+                        <div class="gallery-overlay">
+                            <i class="fas fa-expand-alt"></i>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Services offered -->
-        <section class="services-section text-center" id="sectionServices">
-            <h2 class="section-title text-light mb-5">Services I Offer</h2>
-            <div class="services-container d-flex flex-wrap justify-content-center">
-                <div
-                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
-                    Event Hosting</div>
-                <div
-                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
-                    Corporate Emceeing</div>
-                <div
-                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
-                    Wedding Anchoring</div>
-                <div
-                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
-                    College Fests & Cultural Nights</div>
-                <div
-                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
-                    Award Ceremonies</div>
-                <div
-                    class="service-card d-flex flex-column justify-content-center align-items-center text-center overflow-hidden text-light frosted-card">
-                    Interviews & Talk Shows</div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section id="testimonials" class="text-center">
-            <h2 class="section-title text-light mb-5">Customer Testimonials</h2>
-            <div class="chat-container d-flex flex-column my-0 mx-auto">
-                <div class="chat-bubble left align-self-start text-light frosted-card">
-                    <p>"You have made our event memorable, to think Sangeet without you was not possible. Your Voice and
-                        modulation of voice is ❤️✨"</p>
-                    <span class="client-name d-block fw-bold">– Parshva Shah</span>
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="modal-image-container">
+                        <button type="button" class="custom-modal-close" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <img src="" id="modalImage" alt="Gallery Image">
+                        <div class="modal-caption" id="modalCaption"></div>
+                    </div>
                 </div>
             </div>
-        </section>
-
-        <section id="contact" class="pb-5">
-            <h2 class="section-title text-light my-5 text-center">Book an Event / Contact Form</h2>
-            <form class="booking-form my-0 mx-auto d-flex flex-column" id="bookingForm">
-                <div class="form-row d-flex flex-row flex-wrap">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-row d-flex flex-row flex-wrap">
-                    <input type="tel" name="phone" placeholder="Your Phone" required>
-                    <input type="text" name="event" placeholder="Event Type" required>
-                </div>
-                <div class="form-row d-flex flex-row flex-wrap">
-                    <input type="text" id="date" name="date" required placeholder="Enter Event Date"
-                        onfocus="(this.type='date')" onblur="if(this.value===''){this.type='text'}">
-                    <input type="text" name="instagram" placeholder="Instagram Profile (optional)">
-                </div>
-                <div class="form-row d-flex flex-row flex-wrap">
-                    <input type="text" name="facebook" placeholder="Facebook Profile (optional)">
-                    <input type="text" name="twitter" placeholder="Twitter Profile (optional)">
-                </div>
-                <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                <button class="w-100" type="submit">Submit</button>
-            </form>
-        </section>
-
-        <section id="contact-cards" class="contact-section">
-            <h2 class="contact-heading py-4 text-center text-light">Connect With Me</h2>
-            <div class="cards-container py-4">
-                <!-- Email Card -->
-                <div class="contact-card frosted-card">
-                    <h3><i class="fas fa-envelope me-1"></i> Email</h3>
-                    <a href="mailto:anchormegh@gmail.com">anchormegh@gmail.com</a>
-                </div>
-
-                <!-- Phone Card -->
-                <div class="contact-card frosted-card">
-                    <h3><i class="fas fa-phone me-1"></i> Phone</h3>
-                    <a href="tel:+919510983397">+91 9510983397</a>
-                </div>
-
-                <!-- WhatsApp Card -->
-                <div class="contact-card frosted-card">
-                    <h3><i class="fab fa-whatsapp me-1"></i> WhatsApp</h3>
-                    <a href="https://wa.me/+919510983397" target="_blank">https://wa.me/+919510983397</a>
-                </div>
-
-                <!-- Instagram Card -->
-                <div class="contact-card frosted-card">
-                    <h3><i class="fab fa-instagram me-1"></i> Instagram</h3>
-                    <a href="https://www.instagram.com/anchormegh" target="_blank">instagram.com/anchormegh</a>
-                </div>
-            </div>
-        </section>
-
+        </div>
     </div>
 
-    <!-- Loader Overlay with Blur Background and Centered Spinner -->
-    <div id="loader-overlay"
-        class="position-fixed top-0 start-0 w-100 h-100 d-none d-flex align-items-center justify-content-center"
-        style="z-index: 1055; backdrop-filter: blur(6px); background-color: rgba(0, 0, 0, 0.3);">
+    <section id="services" class="py-5 position-relative">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <h2 class="display-4">Services</h2>
+                </div>
+                <div class="col-lg-6 text-lg-end d-flex align-items-end justify-content-lg-end">
+                    <p class="text-white mb-0">Tailored hosting for every occasion</p>
+                </div>
+            </div>
 
-        <div class="spinner-border text-light" role="status" style="width: 5rem; height: 5rem; border-width: 6px;">
-            <span class="visually-hidden">Loading...</span>
+            <div class="row g-4">
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-microphone-alt"></i></div>
+                            <h3 class="h4 mb-3 text-white">Event Hosting</h3>
+                            <p class="text-sm" style="color: #ccc;">Commanding the stage with energy and elegance for
+                                any large-scale gathering or private function.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-briefcase"></i></div>
+                            <h3 class="h4 mb-3 text-white">Corporate Emceeing</h3>
+                            <p class="text-sm" style="color: #ccc;">Award nights, conferences, and formal summits
+                                handled with absolute poise and professionalism.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-ring"></i></div>
+                            <h3 class="h4 mb-3 text-white">Wedding Anchoring</h3>
+                            <p class="text-sm" style="color: #ccc;">Sangeet nights, Ring ceremonies, and Receptions
+                                hosted with a personal touch and vibrant energy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-guitar"></i></div>
+                            <h3 class="h4 mb-3 text-white">College Fests</h3>
+                            <p class="text-sm" style="color: #ccc;">Cultural nights, concerts, and youth festivals that
+                                require high-octane energy and crowd interaction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-trophy"></i></div>
+                            <h3 class="h4 mb-3 text-white">Award Ceremonies</h3>
+                            <p class="text-sm" style="color: #ccc;">Honoring excellence with a dignified presence,
+                                ensuring smooth transitions and spotlight moments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="glass-card d-flex flex-column justify-content-between">
+                        <div>
+                            <div class="service-icon"><i class="fas fa-comments"></i></div>
+                            <h3 class="h4 mb-3 text-white">Interviews & Talks</h3>
+                            <p class="text-sm" style="color: #ccc;">Engaging conversations, panel moderations, and
+                                podcast hosting with wit and depth.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Toast Container (you can place this anywhere in your HTML) -->
+    <section id="showreel" class="py-5">
+        <div class="container text-center">
+            <span class="text-uppercase letter-spacing-2" style="color: var(--gold); font-size: 0.9rem;">Live in
+                Action</span>
+            <h2 class="display-4 mt-2 mb-5">The Visual <span class="text-gradient">Experience</span></h2>
+
+            <div class="glass-card p-2 position-relative" style="max-width: 900px; margin: 0 auto;">
+                <div class="ratio ratio-16x9 rounded overflow-hidden">
+                    <iframe src="https://www.youtube.com/embed/EjyTbPiYwqA?si=o3Ift1-r6J2qumO0"
+                        title="Anchor Megh Showreel"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works" class="py-5">
+        <div class="container py-5">
+            <h2 class="display-5 text-center mb-5">Latest on <span class="text-gradient">Instagram</span></h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="glass-card p-2" style="height: auto;">
+                        <iframe src="https://www.instagram.com/reel/DIqkp32iY7I/embed" class="igiframe" width="100%"
+                            height="480" frameborder="0" scrolling="no" allowtransparency="true"
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-2" style="height: auto;">
+                        <iframe src="https://www.instagram.com/reel/DGIkRGpo5-j/embed" class="igiframe" width="100%"
+                            height="480" frameborder="0" scrolling="no" allowtransparency="true"
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="glass-card p-2" style="height: auto;">
+                        <iframe src="https://www.instagram.com/reel/DD_Qpb0osIf/embed" class="igiframe" width="100%"
+                            height="480" frameborder="0" scrolling="no" allowtransparency="true"
+                            loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="https://instagram.com/anchormegh" target="_blank" class="btn-gold">Follow @anchormegh</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-black">
+        <div class="container" style="max-width: 800px;">
+            <h3 class="text-center mb-5">Frequently Asked <span class="text-gradient">Questions</span></h3>
+            <div class="accordion accordion-flush" id="faqAccordion">
+
+                <div class="accordion-item bg-transparent border-bottom border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white shadow-none" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#faq1">
+                            Do you travel outside Gujarat for events?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Absolutely! I am available for bookings pan-India and internationally. Travel and
+                            accommodation logistics are usually handled by the client.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-transparent border-bottom border-secondary">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed bg-transparent text-white shadow-none" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Do you provide the script?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body text-muted">
+                            Yes, I customize the script based on your requirements, audience, and the tone of the event
+                            to ensure a personalized experience.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-5">
+                    <h2 class="display-3 mb-4">Let's Create <br><span class="text-gradient">Magic.</span></h2>
+                    <p class="mb-5">Available for bookings worldwide. Fill out the form or reach out directly.</p>
+
+                    <div class="mb-4">
+                        <small class="text-uppercase text-muted letter-spacing-2">Phone</small>
+                        <h4 class="mt-1">
+                            <a href="tel:+919510983397" class="contact-link">+91 95109 83397</a>
+                        </h4>
+                    </div>
+
+                    <div class="mb-4">
+                        <small class="text-uppercase text-muted letter-spacing-2">Email</small>
+                        <h4 class="mt-1">
+                            <a href="mailto:anchormegh@gmail.com" class="contact-link">anchormegh@gmail.com</a>
+                        </h4>
+                    </div>
+
+                    <div class="mt-5">
+                        <small class="text-uppercase text-muted letter-spacing-2">Connect Socially</small>
+                        <div class="d-flex gap-3 mt-3">
+                            <a href="https://instagram.com/anchormegh" target="_blank" class="social-icon-btn"
+                                aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+
+                            <a href="https://www.youtube.com/@meghthebaadal" target="_blank" class="social-icon-btn"
+                                aria-label="YouTube">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+
+                            <a href="https://wa.me/919510983397" target="_blank" class="social-icon-btn"
+                                aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 offset-lg-1">
+                    <form id="bookingForm" class="glass-card">
+                        <div class="row g-4">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="name" id="forName" class="form-control-custom"
+                                        placeholder=" " required>
+                                    <label for="forName" class="form-label-custom">
+                                        <i class="fas fa-user me-2"></i>Full Name
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="tel" name="phone" id="forPhone" class="form-control-custom"
+                                        placeholder=" " required>
+                                    <label for="forPhone" class="form-label-custom">
+                                        <i class="fas fa-phone me-2"></i>Phone Number
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="email" name="email" id="forEmail" class="form-control-custom"
+                                        placeholder=" " required>
+                                    <label for="forEmail" class="form-label-custom">
+                                        <i class="fas fa-envelope me-2"></i>Email Address
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="date" id="forDate" class="form-control-custom"
+                                        placeholder=" " onfocus="(this.type='date')" onblur="(this.type='text')">
+                                    <label for="forDate" class="form-label-custom">
+                                        <i class="fas fa-calendar-alt me-2"></i>Event Date
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="location" id="forLoc" class="form-control-custom"
+                                        placeholder=" ">
+                                    <label for="forLoc" class="form-label-custom">
+                                        <i class="fas fa-map-marker-alt me-2"></i>City/Location
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-2">
+                                <span class="event-selection-label">Event Type</span>
+                                <div class="chip-group">
+                                    <input type="radio" class="chip-input" id="type1" name="event_type" value="Wedding"
+                                        checked>
+                                    <label class="chip-label" for="type1">Wedding</label>
+
+                                    <input type="radio" class="chip-input" id="type2" name="event_type"
+                                        value="Corporate">
+                                    <label class="chip-label" for="type2">Corporate</label>
+
+                                    <input type="radio" class="chip-input" id="type3" name="event_type" value="Concert">
+                                    <label class="chip-label" for="type3">Concert</label>
+
+                                    <input type="radio" class="chip-input" id="type4" name="event_type" value="Sangeet">
+                                    <label class="chip-label" for="type4">Sangeet</label>
+
+                                    <input type="radio" class="chip-input" id="type5" name="event_type" value="Other">
+                                    <label class="chip-label" for="type5">Other</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mt-4">
+                                <div class="form-group mb-0">
+                                    <textarea name="message" id="forMsg" class="form-control-custom" rows="2"
+                                        placeholder=" "></textarea>
+                                    <label for="forMsg" class="form-label-custom">
+                                        <i class="fas fa-comment-dots me-2"></i>Tell me about the event...
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 pt-3 text-end">
+                                <button type="submit" class="btn-gold w-100">
+                                    Send Inquiry
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 border-top border-secondary text-center opacity-50">
+        <div class="container">
+            <small>&copy; 2025 Anchor Megh. All Rights Reserved.</small>
+        </div>
+    </footer>
+
     <div id="toast-container" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1060;"></div>
 
-    <!-- Instagram Embed Script -->
-    <script async src="//www.instagram.com/embed.js"></script>
+    <audio id="successPing" preload="auto">
+        <source src="images/ping.wav" type="audio/wav">
+    </audio>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
     <script>
         (function () {
-            emailjs.init("-b0xEeOf22nPapT64");
+            emailjs.init({
+                publicKey: "-b0xEeOf22nPapT64",
+            });
         })();
+
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const counterElement = document.querySelector(".counter");
+        let count = 0;
+
+        const updateCounter = () => {
+            count += Math.floor(Math.random() * 10) + 1;
+            if (count > 100) count = 100;
+            counterElement.innerText = count + "%";
+
+            if (count < 100) {
+                setTimeout(updateCounter, 30);
+            } else {
+                const tl = gsap.timeline();
+                tl.to(".counter", { y: -50, opacity: 0, duration: 0.5 })
+                    .to(".preloader", { y: "-100%", duration: 1, ease: "power4.inOut" })
+                    .from(".display-hero", { y: 100, opacity: 0, stagger: 0.2, duration: 1, ease: "power3.out" }, "-=0.5");
+            }
+        };
+        updateCounter();
+
+        const cursorOuter = document.querySelector('.cursor-outer');
+        const cursorInner = document.querySelector('.cursor-inner');
+
+        window.addEventListener('mousemove', e => {
+            cursorInner.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
+            cursorOuter.style.left = e.clientX + 'px';
+            cursorOuter.style.top = e.clientY + 'px';
+        });
+
+        const hoverables = document.querySelectorAll('a, button, .glass-card, input, textarea, .reveal-img-wrapper');
+        hoverables.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOuter.style.width = '60px';
+                cursorOuter.style.height = '60px';
+                cursorOuter.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOuter.style.width = '40px';
+                cursorOuter.style.height = '40px';
+                cursorOuter.style.backgroundColor = 'transparent';
+            });
+        });
+
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navbarCollapse = document.getElementById('navbarNav');
+                if (navbarCollapse.classList.contains('show')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    }
+                }
+            });
+        });
+
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        gsap.utils.toArray('.reveal-img-wrapper').forEach(wrapper => {
+            const img = wrapper.querySelector('img');
+            gsap.to(img, {
+                y: "20%",
+                ease: "none",
+                scrollTrigger: {
+                    trigger: wrapper,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+        });
+
+        gsap.utils.toArray('h2, .glass-card, .lead, .text-muted').forEach(el => {
+            gsap.from(el, {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out",
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%"
+                }
+            });
+        });
+
+        const galleryCards = document.querySelectorAll('.gallery-card');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+
+        galleryCards.forEach(card => {
+            card.addEventListener('click', function () {
+                const imgElement = this.querySelector('img');
+                const imgSource = imgElement.getAttribute('src');
+                const imgAlt = imgElement.getAttribute('alt');
+                modalImage.setAttribute('src', imgSource);
+                modalCaption.innerText = imgAlt;
+            });
+        });
+
+        gsap.utils.toArray('.gallery-card').forEach(card => {
+            const img = card.querySelector('img');
+
+            gsap.set(img, { scale: 1.2 });
+
+            gsap.fromTo(img,
+                { y: "-20%" },
+                {
+                    y: "20%",
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                }
+            );
+        });
+
+        const imageModalElement = document.getElementById('imageModal');
+
+        imageModalElement.addEventListener('shown.bs.modal', () => {
+            lenis.stop();
+        });
+
+        imageModalElement.addEventListener('hidden.bs.modal', () => {
+            lenis.start();
+        });
+
+        gsap.utils.toArray('.gallery-item').forEach((item, i) => {
+            gsap.from(item, {
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 90%"
+                }
+            });
+        });
+
+        function showToast(type, message) {
+            const container = document.getElementById('toast-container');
+
+            const toast = document.createElement('div');
+
+            const isSuccess = type === 'success';
+            const iconClass = isSuccess ? 'fa-check-circle' : 'fa-exclamation-circle';
+            const typeClass = isSuccess ? 'success' : 'error';
+
+            toast.className = `custom-toast ${typeClass}`;
+
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="fas ${iconClass} toast-icon"></i>
+                    <span>${message}</span>
+                </div>
+                <button type="button" class="toast-close" onclick="removeToast(this.parentElement)">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                removeToast(toast);
+            }, 5000);
+        }
+
+        function removeToast(toastElement) {
+            if (toastElement.classList.contains('hiding')) return;
+
+            toastElement.classList.add('hiding');
+
+            toastElement.addEventListener('animationend', () => {
+                toastElement.remove();
+            });
+        }
 
         document.getElementById("bookingForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
-            // Show loader
-            document.getElementById("loader-overlay").classList.remove("d-none");
+            const btn = this.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "Sending...";
+
+            const successAudio = document.getElementById('successPing');
 
             emailjs.sendForm("service_6fgpet9", "template_lxajzcn", this)
-                .then(function (response) {
-                    showToast('success', 'Message sent successfully!');
-                }, function (error) {
-                    showToast('error', 'Failed to send message: ' + JSON.stringify(error));
+                .then(() => {
+
+                    if (successAudio) {
+                        successAudio.currentTime = 0;
+                        successAudio.play().catch(err => {
+                            console.warn("Autoplay blocked:", err);
+                        });
+                    }
+
+                    showToast("success", "Your inquiry has been sent!");
+
+                    btn.innerText = "Sent!";
+                    setTimeout(() => btn.innerText = originalText, 3000);
+
+                    this.reset();
                 })
-                .finally(() => {
-                    // Hide loader
-                    document.getElementById("loader-overlay").classList.add("d-none");
+                .catch((error) => {
+                    console.error("EmailJS Error:", error);
+                    showToast("error", "Failed to send. Please try again.");
+
+                    btn.innerText = originalText;
                 });
-
-            this.reset();
         });
 
-        document.body.addEventListener("click", function (e) {
-            const ripple = document.createElement("div");
-            ripple.className = "ripple";
-            ripple.style.left = `${e.pageX - 25}px`;
-            ripple.style.top = `${e.pageY - 25}px`;
-            document.body.appendChild(ripple);
-
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-
-        function showToast(type, message) {
-            const toastContainer = document.getElementById('toast-container');
-
-            const toast = document.createElement('div');
-            toast.classList.add('toast', 'align-items-center', 'text-white', 'border-0', 'mb-2', 'position-relative');
-            toast.style.minWidth = '250px';
-
-            toast.classList.add(type === 'success' ? 'bg-success' : 'bg-danger');
-
-            toast.innerHTML = `
-                <div class="d-flex">
-                    <div class="toast-body">
-                        ${message}
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            `;
-
-            toastContainer.appendChild(toast);
-            const bsToast = new bootstrap.Toast(toast);
-            bsToast.show();
-
-            setTimeout(() => {
-                toast.remove();
-            }, 5000);
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-
-            gsap.to(".intro-word", {
-                opacity: 1,
-                y: 0,
-                duration: 1.5,
-                stagger: 0.8,
-                ease: "power3.out",
-                onComplete: () => {
-                    gsap.to(".intro-word", {
-                        opacity: 0,
-                        scale: 1.5,
-                        duration: 1,
-                        delay: 1,
-                        ease: "power2.inOut",
-                        onComplete: () => {
-                            gsap.to("#intro-words", {
-                                opacity: 0,
-                                duration: 1,
-                                onComplete: () => {
-
-                                    document.getElementById('intro-container').classList.add('d-none');
-                                    const mainContent = document.getElementById('mainPageContent');
-                                    mainContent.classList.remove('d-none');
-                                    mainContent.classList.add('d-block');
-
-                                    gsap.to(".navbar", {
-                                        visibility: "visible",
-                                        opacity: 1,
-                                        duration: 3
-                                    });
-
-                                    gsap.to("#main-content", {
-                                        visibility: "visible",
-                                        opacity: 1,
-                                        duration: 1
-                                    });
-
-                                    gsap.to("#title span", {
-                                        opacity: 1,
-                                        y: 0,
-                                        duration: 1,
-                                        stagger: 0.2,
-                                        ease: "power4.out"
-                                    });
-
-                                    gsap.to(".navbar-nav .nav-link", {
-                                        opacity: 1,
-                                        y: 0,
-                                        duration: 1,
-                                        stagger: 0.2,
-                                        ease: "power3.out"
-                                    });
-
-                                }
-                            });
-                        }
-                    });
-                }
-            });
-
-        });
     </script>
 </body>
 
