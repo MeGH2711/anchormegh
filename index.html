@@ -98,11 +98,29 @@
             pointer-events: none;
         }
 
-        .text-gradient {
-            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .float-wa {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 0px 0px 20px rgba(37, 211, 102, 0.4);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .float-wa:hover {
+            transform: scale(1.1);
+            color: #fff;
+            background-color: #20bd5a;
         }
 
         .noise {
@@ -162,6 +180,13 @@
             font-family: var(--font-head);
             font-size: 5rem;
             font-weight: 700;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .navbar {
@@ -379,6 +404,44 @@
             color: #fff;
         }
 
+        .btn-gold {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--gold);
+            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            z-index: -1;
+        }
+
+        .btn-gold:hover {
+            color: #000;
+        }
+
+        .btn-gold:hover::before {
+            width: 100%;
+        }
+
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
@@ -419,44 +482,6 @@
             }
         }
 
-        .btn-gold {
-            background: transparent;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            position: relative;
-            overflow: hidden;
-            transition: color 0.3s;
-            display: inline-block;
-            text-decoration: none;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .btn-gold::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 100%;
-            background: var(--gold);
-            transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            z-index: -1;
-        }
-
-        .btn-gold:hover {
-            color: #000;
-        }
-
-        .btn-gold:hover::before {
-            width: 100%;
-        }
-
         .glass-card {
             background: var(--bg-card);
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -494,8 +519,24 @@
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            margin-bottom: 30px;
+            min-height: 400px;
+        }
+
+        .t-card-wrapper {
+            opacity: 1;
+        }
+
+        .t-card-wrapper.fading-out {
+            opacity: 0;
+        }
+
+        @media (min-width: 992px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .t-card {
@@ -615,6 +656,26 @@
 
         .t-card.text-center .t-content {
             justify-content: center;
+        }
+
+        .cta-card-full {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-card-full:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
         }
 
         .brand-grid {
@@ -787,6 +848,7 @@
         #imageModal .modal-dialog {
             max-width: fit-content;
             min-width: 300px;
+            margin: 1.75rem auto;
         }
 
         .modal-backdrop.show {
@@ -800,11 +862,6 @@
             background: transparent;
             border: none;
             box-shadow: none;
-        }
-
-        #imageModal .modal-dialog {
-            max-width: fit-content;
-            margin: 1.75rem auto;
         }
 
         .modal-image-container {
@@ -1118,31 +1175,6 @@
                 transform: translateX(50px) scale(0.95);
             }
         }
-
-        .float-wa {
-            position: fixed;
-            bottom: 30px;
-            left: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 30px;
-            box-shadow: 0px 0px 20px rgba(37, 211, 102, 0.4);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .float-wa:hover {
-            transform: scale(1.1);
-            color: #fff;
-            background-color: #20bd5a;
-        }
     </style>
 </head>
 
@@ -1312,74 +1344,12 @@
                 </div>
             </div>
 
-            <div class="testimonial-grid">
+            <div class="testimonial-grid" id="testimonialContainer">
+            </div>
 
-                <div class="t-card">
-                    <div class="t-watermark">“</div>
-                    <div class="t-content">
-                        <div class="t-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="t-text">
-                            "You have made our event memorable, to think Sangeet without you was not possible. Your
-                            Voice and modulation of voice is ❤️✨"
-                        </p>
-                        <div class="t-author">
-                            <div class="t-avatar">P</div>
-                            <div class="t-info">
-                                <h5>Parshva Shah</h5>
-                                <span>Wedding Client</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="t-card">
-                    <div class="t-watermark">“</div>
-                    <div class="t-content">
-                        <div class="t-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="t-text">
-                            "Being part of events you anchored—from Dark Flames to Prom Night 2024—has always been an
-                            engaging, fun, and truly wonderful experience."
-                        </p>
-                        <div class="t-author">
-                            <div class="t-avatar">K</div>
-                            <div class="t-info">
-                                <h5>Kuldeep Soni</h5>
-                                <span>Audience</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="t-card">
-                    <div class="t-watermark">“</div>
-                    <div class="t-content">
-                        <div class="t-stars">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                class="fas fa-star"></i><i class="fas fa-star"></i>
-                        </div>
-                        <p class="t-text">
-                            "He's one of the most natural anchor's I've worked with. He doesn't need a script or
-                            planning or anything!! He'll just go on the stage and he'll nail it. He knows how to connect
-                            with the audience and that's the best part of him!!"
-                        </p>
-                        <div class="t-author">
-                            <div class="t-avatar">Z</div>
-                            <div class="t-info">
-                                <h5>Zarana Vadolia</h5>
-                                <span>Anchor</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="t-card d-flex flex-column justify-content-center align-items-center text-center">
-                    <div class="t-content">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cta-card-full">
                         <div class="mb-4" style="font-size: 3rem; color: var(--gold);">
                             <i class="fas fa-handshake"></i>
                         </div>
@@ -1390,8 +1360,8 @@
                             Megh</a>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </section>
 
@@ -1974,6 +1944,117 @@
             });
         });
 
+        const testimonialsData = [
+            {
+                text: "You have made our event memorable, to think Sangeet without you was not possible. Your Voice and modulation of voice is ❤️✨",
+                author: "Parshva Shah",
+                role: "Wedding Client",
+                avatar: "P"
+            },
+            {
+                text: "Being part of events you anchored—from Dark Flames to Prom Night 2024—has always been an engaging, fun, and truly wonderful experience.",
+                author: "Kuldeep Soni",
+                role: "Audience",
+                avatar: "K"
+            },
+            {
+                text: "He's one of the most natural anchor's I've worked with. He doesn't need a script or planning or anything!! He'll just go on the stage and he'll nail it.",
+                author: "Zarana Vadolia",
+                role: "Anchor",
+                avatar: "Z"
+            },
+            {
+                text: "Energy! The first thing that comes to mind when I think of Megh as an anchor is how impossible it is to miss the surge of energy he brings into the room.",
+                author: "Darpan Daswani",
+                role: "Audience",
+                avatar: "D"
+            },
+            {
+                text: "Amazing Anchor, full of energy amd enthusiasm. Keep it upp",
+                author: "Anish Karnik",
+                role: "Audience",
+                avatar: "A"
+            }
+        ];
+
+        const container = document.getElementById('testimonialContainer');
+        let currentIndex = 0;
+        const cardsToShow = 3;
+        const rotateInterval = 5000;
+
+        function createCardHTML(data) {
+            return `
+            <div class="t-card-wrapper h-100">
+                <div class="t-card h-100">
+                    <div class="t-watermark">“</div>
+                    <div class="t-content">
+                        <div class="t-stars">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="t-text">"${data.text}"</p>
+                        <div class="t-author">
+                            <div class="t-avatar">${data.avatar}</div>
+                            <div class="t-info">
+                                <h5>${data.author}</h5>
+                                <span>${data.role}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        }
+
+        function renderTestimonials() {
+            let htmlContent = '';
+
+            for (let i = 0; i < cardsToShow; i++) {
+                const dataIndex = (currentIndex + i) % testimonialsData.length;
+                htmlContent += createCardHTML(testimonialsData[dataIndex]);
+            }
+
+            container.innerHTML = htmlContent;
+        }
+
+        function cycleTestimonials() {
+            if (testimonialsData.length <= cardsToShow) return;
+
+            const wrappers = document.querySelectorAll('.t-card-wrapper');
+
+            gsap.to(wrappers, {
+                duration: 0.5,
+                opacity: 0,
+                y: -30,
+                stagger: 0.1,
+                ease: "power2.in",
+                onComplete: () => {
+                    currentIndex = (currentIndex + cardsToShow) % testimonialsData.length;
+                    renderTestimonials();
+
+                    const newWrappers = document.querySelectorAll('.t-card-wrapper');
+
+                    gsap.fromTo(newWrappers,
+                        {
+                            opacity: 0,
+                            y: 30
+                        },
+                        {
+                            duration: 0.8,
+                            opacity: 1,
+                            y: 0,
+                            stagger: 0.1,
+                            ease: "power2.out",
+                            clearProps: "all"
+                        }
+                    );
+                }
+            });
+        }
+
+        renderTestimonials();
+
+        setInterval(cycleTestimonials, rotateInterval);
+
         const galleryCards = document.querySelectorAll('.gallery-card');
         const modalImage = document.getElementById('modalImage');
         const modalCaption = document.getElementById('modalCaption');
@@ -2102,6 +2183,7 @@
                     btn.innerText = originalText;
                 });
         });
-
     </script>
 </body>
+
+</html>
