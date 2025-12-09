@@ -580,12 +580,10 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, border-color 0.3s ease;
-            /* CHANGED: Use a variable for min-height, fallback to auto */
             min-height: var(--max-card-height, auto);
             height: 100%;
             backdrop-filter: blur(10px);
             display: flex;
-            /* Ensure flex behavior for content alignment */
             flex-direction: column;
         }
 
@@ -2106,6 +2104,59 @@
                 }
             });
         }
+
+        function adjustCardHeights() {
+            const container = document.getElementById('testimonialContainer');
+            if (!container) return;
+
+            const testContainer = document.createElement('div');
+            testContainer.className = 'testimonial-grid';
+            testContainer.style.visibility = 'hidden';
+            testContainer.style.position = 'absolute';
+            testContainer.style.width = getComputedStyle(container).width;
+            testContainer.style.zIndex = '-1000';
+            document.body.appendChild(testContainer);
+
+            let maxHeight = 0;
+
+            testimonialsData.forEach(data => {
+                let html = createCardHTML(data);
+
+                html = html.replace(/h-100/g, '');
+
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                const cardWrapper = tempDiv.firstElementChild;
+
+                const card = cardWrapper.querySelector('.t-card');
+                if (card) {
+                    card.style.height = 'auto';
+                    card.style.minHeight = '0';
+                }
+
+                testContainer.appendChild(cardWrapper);
+            });
+
+            const cards = testContainer.querySelectorAll('.t-card');
+            cards.forEach(card => {
+                const h = card.offsetHeight;
+                if (h > maxHeight) maxHeight = h;
+            });
+
+            document.body.removeChild(testContainer);
+
+            if (maxHeight > 0) {
+                document.documentElement.style.setProperty('--max-card-height', `${maxHeight}px`);
+            }
+        }
+
+        window.addEventListener('load', adjustCardHeights);
+        window.addEventListener('resize', () => {
+            clearTimeout(window.resizeTimer);
+            window.resizeTimer = setTimeout(adjustCardHeights, 200);
+        });
+
+        adjustCardHeights();
 
         renderTestimonials();
 
