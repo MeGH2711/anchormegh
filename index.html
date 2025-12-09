@@ -254,13 +254,17 @@
                 top: 0;
                 left: 0;
                 width: 100%;
+                /* Use dvh for better mobile centering (ignores address bar) */
                 height: 100vh;
+                height: 100dvh;
                 background-color: #000;
                 z-index: 1040;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
+                /* This aligns items vertically */
                 align-items: center;
+                /* This aligns items horizontally */
                 transform: translateY(-100%);
                 transition: transform 0.4s ease-in-out;
                 opacity: 0;
@@ -277,7 +281,8 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background-color: #000;
+                height: 100dvh;
+                background-color: #ffffff;
                 z-index: 1040;
                 display: flex;
                 flex-direction: column;
@@ -290,6 +295,8 @@
                 width: 100%;
                 text-align: center;
                 gap: 2rem;
+                margin: 0;
+                padding: 0;
             }
 
             .nav-item {
@@ -318,8 +325,16 @@
                 animation-delay: 0.5s;
             }
 
+            .nav-item:nth-child(6) {
+                animation-delay: 0.6s;
+            }
+
+            .nav-item:nth-child(7) {
+                animation-delay: 0.7s;
+            }
+
             .nav-link {
-                font-size: 2.5rem;
+                font-size: 1.75rem;
                 font-weight: 700;
                 color: #fff !important;
                 border-bottom: none;
@@ -1286,7 +1301,7 @@
                             <h4 class="h6 text-uppercase mb-3" style="color: var(--gold);">Key Highlights</h4>
                             <div class="row">
                                 <div class="col-6 pb-4">
-                                    <h2 class="m-0 text-gradient">250+</h2>
+                                    <h2 class="m-0 text-gradient">25+</h2>
                                     <small class="text-white text-uppercase">Events Hosted</small>
                                 </div>
                                 <div class="col-6 pb-4">
