@@ -580,8 +580,13 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s ease, border-color 0.3s ease;
+            /* CHANGED: Use a variable for min-height, fallback to auto */
+            min-height: var(--max-card-height, auto);
             height: 100%;
             backdrop-filter: blur(10px);
+            display: flex;
+            /* Ensure flex behavior for content alignment */
+            flex-direction: column;
         }
 
         .t-card::before {
@@ -2236,5 +2241,3 @@
         });
     </script>
 </body>
-
-</html>
