@@ -74,6 +74,29 @@
             background: white;
         }
 
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--gold);
+            border-radius: 10px;
+            border: 3px solid var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #f0c94e;
+        }
+
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--bg-dark);
+        }
+
         html,
         body {
             overflow-x: hidden;
@@ -1211,10 +1234,24 @@
                 transform: translateX(50px) scale(0.95);
             }
         }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gold);
+            width: 0%;
+            z-index: 100000;
+            box-shadow: 0 0 10px var(--gold);
+            pointer-events: none;
+        }
     </style>
 </head>
 
 <body>
+
+    <div class="scroll-progress"></div>
 
     <a href="https://wa.me/919510983397?text=Hi%20Anchor%20Megh,%20I%20want%20to%20inquire%20about%20an%20event."
         class="float-wa text-decoration-none" target="_blank">
@@ -1625,7 +1662,7 @@
 
             <div class="glass-card p-2 position-relative" style="max-width: 900px; margin: 0 auto;">
                 <div class="ratio ratio-16x9 rounded overflow-hidden">
-                    <iframe class="rounded-4" src="https://www.youtube.com/embed/EjyTbPiYwqA?si=o3Ift1-r6J2qumO0"
+                    <iframe class="rounded-4" src="https://www.youtube.com/embed/EjyTbPiYwqA?si=o3Ift1-r6J2qumO0&rel=0"
                         title="Anchor Megh Showreel"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe>
@@ -1848,7 +1885,7 @@
 
     <footer class="py-4 border-top border-secondary text-center opacity-50">
         <div class="container">
-            <small>&copy; 2025 Anchor Megh. All Rights Reserved.</small>
+            <small>&copy; <span id="currentYear"></span> Anchor Megh. All Rights Reserved.</small>
         </div>
     </footer>
 
@@ -1889,6 +1926,17 @@
         requestAnimationFrame(raf);
 
         gsap.registerPlugin(ScrollTrigger);
+
+        gsap.to(".scroll-progress", {
+            width: "100%",
+            ease: "none",
+            scrollTrigger: {
+                trigger: "body",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0
+            }
+        });
 
         const counterElement = document.querySelector(".counter");
         let count = 0;
@@ -2296,5 +2344,8 @@
                     btn.innerText = originalText;
                 });
         });
+
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
     </script>
 </body>
