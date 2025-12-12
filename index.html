@@ -1247,6 +1247,73 @@
             box-shadow: 0 0 10px var(--gold);
             pointer-events: none;
         }
+
+        .footer-custom {
+            background-color: #050505;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content-wrapper {
+                flex-direction: row;
+                justify-content: space-between;
+                text-align: left;
+            }
+        }
+
+        .copyright-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+        }
+
+        .designer-credit {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .designer-link {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-family: var(--font-head);
+            position: relative;
+            transition: color 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .designer-link::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--gold);
+            transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .designer-link:hover {
+            color: var(--gold);
+        }
+
+        .designer-link:hover::after {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -1888,9 +1955,20 @@
         </div>
     </section>
 
-    <footer class="py-4 border-top border-secondary text-center opacity-50">
+    <footer class="footer-custom py-4">
         <div class="container">
-            <small>&copy; <span id="currentYear"></span> Anchor Megh. All Rights Reserved.</small>
+            <div class="footer-content-wrapper">
+                <div class="copyright-text">
+                    &copy; <span id="currentYear"></span> Anchor Megh. All Rights Reserved.
+                </div>
+
+                <div class="designer-credit">
+                    <span>Designed & Developed by</span>
+                    <a href="https://meghportfolio.netlify.app/" target="_blank" class="designer-link">
+                        Megh Patel
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
 
